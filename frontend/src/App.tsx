@@ -1,4 +1,3 @@
-import "./App.css";
 import Navbar from "./components/layout/Navbar";
 import EnquireNow from "./components/layout/EnquireNow";
 import HeroSection from "./components/sections/HeroSection";

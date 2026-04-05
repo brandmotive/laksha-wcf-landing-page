@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
-import logoOne from "../../assets/images/logo_one.png";
-import logoTwo from "../../assets/images/logo_two.png";
+// import logoOne from "../../assets/images/logo_one.png";
+// import logoTwo from "../../assets/images/logo_two.png";
 import logo from "../../assets/images/finalLogo.png";
 import { useScrolled } from "../../hooks/useScrolled";
 import { navMenu } from "../../data/navMenu";
