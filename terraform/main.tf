@@ -179,7 +179,7 @@ resource "aws_cloudfront_distribution" "website" {
 
 # Apex domain (lakshawcfhospitals.in)
 resource "aws_route53_record" "apex" {
-  count   = var.environment == "prod" ? 1 : 0
+  count = var.environment == "prod" ? 1 : 0
 
   zone_id         = data.aws_route53_zone.main.zone_id
   name            = local.domain_name
@@ -194,7 +194,7 @@ resource "aws_route53_record" "apex" {
 }
 
 resource "aws_route53_record" "apex_ipv6" {
-  count   = var.environment == "prod" ? 1 : 0
+  count = var.environment == "prod" ? 1 : 0
 
   zone_id         = data.aws_route53_zone.main.zone_id
   name            = local.domain_name
