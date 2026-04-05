@@ -119,8 +119,17 @@ jobs:
         id: tf-outputs
         working-directory: terraform
         run: |
-          s3_bucket=$(terraform output -raw s3_bucket_name 2>/dev/null || true)
-          cf_id=$(terraform output -raw cloudfront_distribution_id 2>/dev/null || true)
+          s3_bucket=""
+          cf_id=""
+          
+          if terraform output -raw s3_bucket_name > tf_out.txt 2>/dev/null; then
+            s3_bucket=$(cat tf_out.txt)
+          fi
+          
+          if terraform output -raw cloudfront_distribution_id > tf_out.txt 2>/dev/null; then
+            cf_id=$(cat tf_out.txt)
+          fi
+          
           echo "s3_bucket_name=$s3_bucket" >> "$GITHUB_OUTPUT"
           echo "cloudfront_distribution_id=$cf_id" >> "$GITHUB_OUTPUT"
 
