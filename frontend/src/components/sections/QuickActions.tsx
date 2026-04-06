@@ -4,7 +4,13 @@ import { quickActions } from "../../data/quickActions";
 // Inline SVG icons matching the design
 const icons: Record<string, JSX.Element> = {
   "online-consultation": (
-    <svg viewBox="0 0 48 48" fill="none" stroke="#555" strokeWidth="1.8" className="w-12 h-12">
+    <svg
+      viewBox="0 0 48 48"
+      fill="none"
+      stroke="#555"
+      strokeWidth="1.8"
+      className="w-12 h-12"
+    >
       <rect x="6" y="8" width="36" height="26" rx="3" />
       <path d="M17 34v6M31 34v6M13 40h22" />
       <circle cx="19" cy="19" r="5" />
@@ -14,7 +20,13 @@ const icons: Record<string, JSX.Element> = {
     </svg>
   ),
   "hospital-visit": (
-    <svg viewBox="0 0 48 48" fill="none" stroke="#555" strokeWidth="1.8" className="w-12 h-12">
+    <svg
+      viewBox="0 0 48 48"
+      fill="none"
+      stroke="#555"
+      strokeWidth="1.8"
+      className="w-12 h-12"
+    >
       <rect x="5" y="10" width="38" height="30" rx="3" />
       <path d="M5 18h38" />
       <path d="M15 10V6M33 10V6" />
@@ -24,14 +36,26 @@ const icons: Record<string, JSX.Element> = {
     </svg>
   ),
   "pregnancy-tracker": (
-    <svg viewBox="0 0 48 48" fill="none" stroke="#555" strokeWidth="1.8" className="w-12 h-12">
+    <svg
+      viewBox="0 0 48 48"
+      fill="none"
+      stroke="#555"
+      strokeWidth="1.8"
+      className="w-12 h-12"
+    >
       <path d="M20 8c0 0 1 3 0 7s-6 7-4 13 8 10 10 10 8-4 10-10-3-9-4-13-0-7 0-7" />
       <path d="M18 26c2 2 4 3 6 3s4-1 6-3" />
       <circle cx="24" cy="14" r="2" />
     </svg>
   ),
   "book-scans": (
-    <svg viewBox="0 0 48 48" fill="none" stroke="#555" strokeWidth="1.8" className="w-12 h-12">
+    <svg
+      viewBox="0 0 48 48"
+      fill="none"
+      stroke="#555"
+      strokeWidth="1.8"
+      className="w-12 h-12"
+    >
       <rect x="8" y="6" width="32" height="38" rx="3" />
       <path d="M15 16h18M15 22h18M15 28h10" />
       <circle cx="34" cy="34" r="6" />
@@ -43,13 +67,13 @@ const icons: Record<string, JSX.Element> = {
 
 export default function QuickActions() {
   return (
-    <section className="bg-gray-100 py-6 px-4 md:px-6 lg:px-8">
-      <div className="max-w-5xl mx-auto grid grid-cols-2 lg:grid-cols-4 gap-4">
+    <section className="h-[400px] w-full flex flex-row justify-center items-center bg-gray-100 p-8 md:p-10 lg:p-12">
+      <div className="w-[85%] h-[80%] grid grid-cols-2 gap-4">
         {quickActions.map((action) => (
           <a
             key={action.id}
             href={action.href}
-            className="flex flex-col items-center justify-center gap-3 bg-white rounded-2xl p-5 md:p-6 shadow-sm hover:shadow-md hover:-translate-y-0.5 transition-all duration-200 cursor-pointer group"
+            className="flex flex-col items-center justify-center gap-3 bg-white rounded-2xl p-5 md:p-6 shadow-sm hover:shadow-md hover:-translate-y-0.5 transition-all duration-200 cursor-pointer group mx-1 my-1.5"
           >
             <div className="text-gray-500 group-hover:text-[#6B2D8B] transition-colors duration-200">
               {icons[action.icon]}

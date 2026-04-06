@@ -1,6 +1,4 @@
 import { useState, useEffect } from "react";
-import logoOne from "../../assets/images/logo_one.png";
-import logoTwo from "../../assets/images/logo_two.png";
 import logo from "../../assets/images/finalLogo.png";
 import { useScrolled } from "../../hooks/useScrolled";
 import { navMenu } from "../../data/navMenu";
@@ -74,17 +72,21 @@ export default function Navbar() {
 
   // <768px  → always white
   // ≥768px  → transparent until scrolled, then white
+
+  // const headerBg = isScrolled
+  //   ? "bg-white shadow-md"
+  //   : "bg-white/50";
+
   const headerBg = isScrolled
     ? "bg-white shadow-md"
-    : "bg-white/50";
-  // md:bg-transparent md:shadow-none shadow-sm
+    : "bg-white md:bg-white/50";
 
   return (
     <>
-      {/* Full-width sticky header so bg color spans whole screen */}
-      <header className={`sticky top-0 z-[60] w-full mx-auto transition-all duration-300 ${headerBg}`}>
 
-        {/* ══ ROW 1: Logo + Actions — centered with symmetric horizontal padding ══════ */}
+      <header className={`fixed top-0 left-0 right-0 z-[60] w-full transition-all duration-300 mx-auto ${headerBg}`}>
+
+        {/* ROW 1: Logo + Actions — centered with symmetric horizontal padding  */}
         <div className="flex items-center justify-around px-[10vw] py-4 h-[13vh] mb-10">
 
           {/* Logo */}
@@ -102,8 +104,6 @@ export default function Navbar() {
               <AppointmentButton />
               <EmergencyButton />
             </div>
-
-
 
             {/* Hamburger — visible on <992px */}
             <button
@@ -129,7 +129,7 @@ export default function Navbar() {
 
       </header>
 
-      {/* Mobile / Tablet Drawer */}
+      {/* Mobile / Tablet Drawer For Menu Options */}
       <MobileDrawer isOpen={drawerOpen} onClose={() => setDrawerOpen(false)} />
     </>
   );

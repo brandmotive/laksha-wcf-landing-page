@@ -12,7 +12,7 @@ export default function HeroSection() {
         muted
         loop
         playsInline
-        className="absolute inset-0 w-full h-full object-cover"
+        className="absolute inset-0 w-full h-[100%] md:h-full object-cover"
         aria-hidden="true"
       >
         <source src={heroVideo} type="video/mp4" />
@@ -25,10 +25,7 @@ export default function HeroSection() {
       />
 
       {/* ── Content ── */}
-      <div
-        className="relative z-10 flex flex-col items-center justify-center gap-15 text-center px-4 pt-10 pb-10 md:pt-36 md:pb-16 min-h-[calc(100vh-72px)] md:h-[130vh]"
-      >
-
+      <div className="relative z-10 flex flex-col items-center justify-center gap-15 text-center px-4 pt-10 pb-10 md:pt-36 md:pb-16 min-h-[calc(100vh-72px)] md:h-[130vh]">
         <div className="flex gap-6">
           {/* Pink decorative line — above heading */}
           {/* <div className="flex items-center justify-center w-[200px] max-w-xs md:max-w-md lg:max-w-lg mb-3">
@@ -42,7 +39,9 @@ export default function HeroSection() {
             <h1 className="text-black text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold leading-tight">
               Best Maternity Hospital in Chennai
             </h1>
-            <p className="text-black text-2xl sm:text-2xl md:text-2xl lg:text-3xl font-bold leading-tight">26 Years of Excellence</p>
+            <p className="text-black text-2xl sm:text-2xl md:text-2xl lg:text-3xl font-bold leading-tight">
+              26 Years of Excellence
+            </p>
           </div>
 
           {/* Pink decorative line — below heading */}
@@ -53,21 +52,28 @@ export default function HeroSection() {
         </div>
 
         {/* Book an Appointment CTA */}
-        <div className="mt-8 max-w-xs md:max-w-sm">
+        <div className="mt-8 max-w-xl md:max-w-sm">
           <a
             href="#book"
-            className="block w-[260px] w-full flex items-center justify-center h-[45px] bg-[#6B2D8B] hover:bg-[#521E6E] text-white font-semibold text-base md:text-xl py-3.5 px-8 rounded-lg transition-colors duration-200 shadow-md hover:shadow-lg"
+            className="block w-[200px] flex items-center justify-center h-[45px] bg-[#6B2D8B] hover:bg-[#521E6E] text-white font-semibold text-base md:text-xl py-3.5 px-8 rounded-lg transition-colors duration-200 shadow-md hover:shadow-lg md:w-[240px]"
           >
             Book an Appointment
           </a>
         </div>
 
         <div className="hidden md:flex flex-row gap-20">
-
           {/* Box 1: Book Online Consult */}
           <div className="h-[200px] w-[260px] bg-white/70 rounded-3xl shadow-lg flex flex-col items-center justify-center p-6 gap-6 hover:bg-white/80 transition-all duration-300 cursor-pointer group">
             <div className="w-16 h-16 text-gray-800 transition-transform duration-300 group-hover:scale-110">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.2" strokeLinecap="round" strokeLinejoin="round" className="w-full h-full">
+              <svg
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                strokeWidth="1.2"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                className="w-full h-full"
+              >
                 {/* Laptop silhouette */}
                 <path d="M4 16h16a2 2 0 0 0 2-2V5a2 2 0 0 0-2-2H4a2 2 0 0 0-2 2v9a2 2 0 0 0 2 2z" />
                 <path d="M2 16h20v2a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2v-2z" />
@@ -81,14 +87,24 @@ export default function HeroSection() {
               </svg>
             </div>
             <p className="text-xl font-bold text-gray-800 leading-tight">
-              Book Online<br />Consult
+              Book Online
+              <br />
+              Consult
             </p>
           </div>
 
           {/* Box 2: Book Hospital Visit */}
           <div className="h-[210px] w-[260px] bg-white/70 rounded-3xl shadow-lg flex flex-col items-center justify-center p-6 gap-6 hover:bg-white/80 transition-all duration-300 cursor-pointer group">
             <div className="w-16 h-16 text-gray-800 transition-transform duration-300 group-hover:scale-110">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.2" strokeLinecap="round" strokeLinejoin="round" className="w-full h-full">
+              <svg
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                strokeWidth="1.2"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                className="w-full h-full"
+              >
                 <rect x="3" y="4" width="18" height="18" rx="2" ry="2" />
                 <line x1="16" y1="2" x2="16" y2="6" />
                 <line x1="8" y1="2" x2="8" y2="6" />
@@ -100,15 +116,22 @@ export default function HeroSection() {
                 <circle cx="7" cy="18" r="0.5" fill="currentColor" />
                 <circle cx="11" cy="18" r="0.5" fill="currentColor" />
                 {/* Checkmark in circle */}
-                <circle cx="18" cy="18" r="4" fill="white" stroke="currentColor" />
+                <circle
+                  cx="18"
+                  cy="18"
+                  r="4"
+                  fill="white"
+                  stroke="currentColor"
+                />
                 <path d="M16 18l1.5 1.5 2.5-3.5" />
               </svg>
             </div>
             <p className="text-xl font-bold text-gray-800 leading-tight">
-              Book Hospital<br />Visit
+              Book Hospital
+              <br />
+              Visit
             </p>
           </div>
-
         </div>
       </div>
     </section>
