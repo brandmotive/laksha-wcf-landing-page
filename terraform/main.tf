@@ -33,7 +33,8 @@ data "aws_acm_certificate" "shared" {
 # =============================================================================
 
 resource "aws_s3_bucket" "website" {
-  bucket = local.bucket_name
+  bucket        = local.bucket_name
+  force_destroy = true
 
   tags = {
     Name = "${var.project_name} Website - ${var.environment}"
