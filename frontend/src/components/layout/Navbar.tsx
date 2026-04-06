@@ -85,7 +85,7 @@ export default function Navbar() {
   return (
     <>
 
-      <header className={`fixed top-0 left-0 right-0 z-[60] w-full transition-all duration-300 mx-auto ${headerBg}`}>
+      <header className={`fixed top-0 left-0 right-0 z-[60] w-full transition-all duration-300 mx-auto border-b-[6px] border-[#ba98ce] rounded-b-3xl ${headerBg}`}>
 
         {/* ROW 1: Logo + Actions — centered with symmetric horizontal padding  */}
         <div className="flex items-center justify-around px-[10vw] py-4 h-[13vh] mb-3">
@@ -93,7 +93,7 @@ export default function Navbar() {
           {/* Logo */}
           <div className="flex flex-col shrink-0">
             <div className="flex items-center gap-2">
-              <img src={logo} alt="BirthRight by Rainbow" className="h-16 sm:h-18 md:h-20 w-auto object-contain" />
+              <img src={logo} alt="WCF" className="h-16 sm:h-18 md:h-20 w-auto object-contain" />
             </div>
           </div>
 
