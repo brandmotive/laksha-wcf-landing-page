@@ -1,0 +1,154 @@
+# =============================================================================
+# Destroy: Terraform Destroy All Architecture
+# =============================================================================
+# Triggered ONLY on manual dispatch.
+# Uses GitHub OIDC to assume an IAM role — no stored AWS secrets.
+#
+# Flow: Plan Destroy → (maintainer approval) → Apply Destroy
+#
+# Requires a GitHub Environment named "prod" (or "staging"/"dev")
+# with required reviewers configured under:
+#   Settings → Environments → <env> → Required reviewers
+# =============================================================================
+
+name: Destroy Infrastructure
+
+on:
+  workflow_dispatch:
+    inputs:
+      environment:
+        description: "Target environment to destroy"
+        required: true
+        default: "dev"
+        type: choice
+        options:
+          - dev
+          - staging
+          - prod
+
+concurrency:
+  group: destroy-${{ github.event.inputs.environment }}
+  cancel-in-progress: false
+
+env:
+  TERRAFORM_VERSION: "1.12.0"
+  AWS_REGION: "ap-south-1"
+  ENVIRONMENT: ${{ github.event.inputs.environment }}
+
+permissions:
+  id-token: write
+  contents: read
+
+jobs:
+  # ===========================================================================
+  # Job 1: Plan — Generate and publish the Terraform destroy plan
+  # ===========================================================================
+  plan-destroy:
+    name: "Terraform Plan Destroy (${{ github.event.inputs.environment }})"
+    runs-on: ubuntu-latest
+    outputs:
+      has_changes: ${{ steps.plan.outputs.has_changes }}
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Configure AWS credentials (OIDC)
+        uses: aws-actions/configure-aws-credentials@v4
+        with:
+          role-to-assume: ${{ vars.AWS_ROLE_ARN }}
+          aws-region: ${{ env.AWS_REGION }}
+
+      - name: Setup Terraform
+        uses: hashicorp/setup-terraform@v3
+        with:
+          terraform_version: ${{ env.TERRAFORM_VERSION }}
+          terraform_wrapper: false
+
+      - name: Terraform Init
+        working-directory: terraform
+        run: |
+          terraform init \
+            -backend-config="key=laksha-wcf-landing-page/${{ env.ENVIRONMENT }}/terraform.tfstate"
+
+      - name: Terraform Plan Destroy
+        id: plan
+        working-directory: terraform
+        run: |
+          set +e
+          terraform plan \
+            -destroy \
+            -var-file="environments/${{ env.ENVIRONMENT }}.tfvars" \
+            -out=tfplan \
+            -detailed-exitcode
+          EXIT_CODE=$?
+          set -e
+
+          if [ $EXIT_CODE -eq 0 ]; then
+            echo "has_changes=false" >> "$GITHUB_OUTPUT"
+          elif [ $EXIT_CODE -eq 2 ]; then
+            echo "has_changes=true" >> "$GITHUB_OUTPUT"
+          else
+            echo "Terraform plan failed"
+            exit $EXIT_CODE
+          fi
+
+      - name: Publish Plan to Job Summary
+        if: always()
+        working-directory: terraform
+        run: |
+          terraform show -no-color tfplan > plan-output.txt
+          echo "## Terraform Plan Destroy — \`${{ env.ENVIRONMENT }}\`" >> "$GITHUB_STEP_SUMMARY"
+          echo "" >> "$GITHUB_STEP_SUMMARY"
+          echo '```hcl' >> "$GITHUB_STEP_SUMMARY"
+          cat plan-output.txt >> "$GITHUB_STEP_SUMMARY"
+          echo '```' >> "$GITHUB_STEP_SUMMARY"
+
+      - name: Upload Plan Artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: tfplan-destroy-${{ env.ENVIRONMENT }}
+          path: terraform/tfplan
+          retention-days: 5
+
+  # ===========================================================================
+  # Job 2: Apply — Requires maintainer approval via GitHub Environment
+  # ===========================================================================
+  destroy:
+    name: "Terraform Destroy (${{ github.event.inputs.environment }})"
+    runs-on: ubuntu-latest
+    needs: plan-destroy
+    if: needs.plan-destroy.outputs.has_changes == 'true'
+    environment: ${{ github.event.inputs.environment }}
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Configure AWS credentials (OIDC)
+        uses: aws-actions/configure-aws-credentials@v4
+        with:
+          role-to-assume: ${{ vars.AWS_ROLE_ARN }}
+          aws-region: ${{ env.AWS_REGION }}
+
+      - name: Setup Terraform
+        uses: hashicorp/setup-terraform@v3
+        with:
+          terraform_version: ${{ env.TERRAFORM_VERSION }}
+          terraform_wrapper: false
+
+      - name: Terraform Init
+        working-directory: terraform
+        run: |
+          terraform init \
+            -backend-config="key=laksha-wcf-landing-page/${{ env.ENVIRONMENT }}/terraform.tfstate"
+
+      - name: Download Plan Artifact
+        uses: actions/download-artifact@v4
+        with:
+          name: tfplan-destroy-${{ env.ENVIRONMENT }}
+          path: terraform/
+
+      - name: Terraform Apply Destroy
+        working-directory: terraform
+        run: terraform apply -auto-approve tfplan

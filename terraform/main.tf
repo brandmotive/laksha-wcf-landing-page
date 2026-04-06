@@ -33,7 +33,8 @@ data "aws_acm_certificate" "shared" {
 # =============================================================================
 
 resource "aws_s3_bucket" "website" {
-  bucket = local.bucket_name
+  bucket        = local.bucket_name
+  force_destroy = true
 
   tags = {
     Name = "${var.project_name} Website - ${var.environment}"
@@ -179,7 +180,7 @@ resource "aws_cloudfront_distribution" "website" {
 
 # Apex domain (lakshawcfhospitals.in)
 resource "aws_route53_record" "apex" {
-  count   = var.environment == "prod" ? 1 : 0
+  count = var.environment == "prod" ? 1 : 0
 
   zone_id         = data.aws_route53_zone.main.zone_id
   name            = local.domain_name
@@ -194,7 +195,7 @@ resource "aws_route53_record" "apex" {
 }
 
 resource "aws_route53_record" "apex_ipv6" {
-  count   = var.environment == "prod" ? 1 : 0
+  count = var.environment == "prod" ? 1 : 0
 
   zone_id         = data.aws_route53_zone.main.zone_id
   name            = local.domain_name
