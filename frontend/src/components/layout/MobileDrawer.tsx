@@ -59,7 +59,7 @@ export default function MobileDrawer({ isOpen, onClose }: MobileDrawerProps) {
           }`}
       >
         {/* ── Top utility bar ── */}
-        <div className="flex items-center justify-end px-4 py-4 border-b border-gray-200">
+        <div className="flex h-[50px] w-[98%] items-center justify-end px-4 py-4 border-b border-gray-200">
 
 
           <div className="flex items-center gap-3">
@@ -84,12 +84,12 @@ export default function MobileDrawer({ isOpen, onClose }: MobileDrawerProps) {
               : "translate-x-0"
               }`}
           >
-            <nav className="py-2">
+            <nav className="py-2 h-[200px] m-auto">
               {navMenu.map((item) => (
                 <button
                   key={item.label}
                   onClick={() => handleItemClick(item)}
-                  className="w-full flex items-center justify-between px-6 py-4 text-left text-[15px] font-medium text-gray-800 hover:bg-gray-50 border-b border-gray-100 transition-colors duration-150"
+                  className="h-[45px] w-[90%] mx-auto flex items-center justify-between px-6 py-4 text-left text-[15px] font-medium text-gray-800 hover:bg-gray-50 border-b border-gray-100 transition-colors duration-150"
                 >
                   {item.label}
                   {item.children && item.children.length > 0 && (

@@ -5,7 +5,7 @@ export default function HeroSection() {
   return (
     // md+: full 100vh — transparent absolute navbar floats on top
     // mobile: subtract ~72px for the always-visible white navbar
-    <section className="relative w-full overflow-hidden min-h-[calc(100vh-72px)] md:min-h-screen md:h-screen">
+    <section className="relative w-full overflow-hidden min-h-[calc(100vh-72px)] md:min-h-screen">
       {/* ── Background video (all screens) ── */}
       <video
         autoPlay
@@ -25,7 +25,7 @@ export default function HeroSection() {
       />
 
       {/* ── Content ── */}
-      <div className="relative z-10 flex flex-col items-center justify-center gap-15 text-center px-4 pt-10 pb-10 md:pt-36 md:pb-16 min-h-[calc(100vh-72px)] md:h-[130vh]">
+      <div className="relative z-10 flex flex-col items-center justify-center gap-10 text-center px-4 pt-10 pb-10 md:pt-36 md:pb-16 min-h-[calc(100vh-72px)] md:h-[130vh]">
         <div className="flex gap-6">
           {/* Pink decorative line — above heading */}
           {/* <div className="flex items-center justify-center w-[200px] max-w-xs md:max-w-md lg:max-w-lg mb-3">
@@ -35,7 +35,7 @@ export default function HeroSection() {
 
           {/* Heading with brand-purple background pill */}
           {/* bg-[#6B2D8B] */}
-          <div className="rounded-xl px-5 py-4 md:py-5 mx-auto max-w-[90vw] md:max-w-xl lg:max-w-4xl">
+          <div className="rounded-xl md:mx-auto max-w-[90vw] md:max-w-xl lg:max-w-4xl mb-0">
             <h1 className="text-black text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold leading-tight">
               Best Maternity Hospital in Chennai
             </h1>
@@ -52,10 +52,10 @@ export default function HeroSection() {
         </div>
 
         {/* Book an Appointment CTA */}
-        <div className="mt-8 max-w-xl md:max-w-sm">
+        <div className="max-w-xl md:max-w-sm">
           <a
             href="#book"
-            className="block w-[200px] flex items-center justify-center h-[45px] bg-[#6B2D8B] hover:bg-[#521E6E] text-white font-semibold text-base md:text-xl py-3.5 px-8 rounded-lg transition-colors duration-200 shadow-md hover:shadow-lg md:w-[240px]"
+            className="block w-[200px] flex items-center justify-center h-[45px] bg-[#6B2D8B] hover:bg-[#521E6E] text-white font-semibold text-base md:text-xl rounded-lg transition-colors duration-200 shadow-md hover:shadow-lg md:w-[240px]"
           >
             Book an Appointment
           </a>
@@ -63,7 +63,7 @@ export default function HeroSection() {
 
         <div className="hidden md:flex flex-row gap-20">
           {/* Box 1: Book Online Consult */}
-          <div className="h-[200px] w-[260px] bg-white/70 rounded-3xl shadow-lg flex flex-col items-center justify-center p-6 gap-6 hover:bg-white/80 transition-all duration-300 cursor-pointer group">
+          <div className="p-8 bg-white/70 rounded-3xl shadow-lg flex flex-col items-center justify-center p-6 gap-6 hover:bg-white/80 transition-all duration-300 cursor-pointer group">
             <div className="w-16 h-16 text-gray-800 transition-transform duration-300 group-hover:scale-110">
               <svg
                 viewBox="0 0 24 24"
@@ -94,7 +94,7 @@ export default function HeroSection() {
           </div>
 
           {/* Box 2: Book Hospital Visit */}
-          <div className="h-[210px] w-[260px] bg-white/70 rounded-3xl shadow-lg flex flex-col items-center justify-center p-6 gap-6 hover:bg-white/80 transition-all duration-300 cursor-pointer group">
+          <div className="p-8 bg-white/70 rounded-3xl shadow-lg flex flex-col items-center justify-center p-6 gap-6 hover:bg-white/80 transition-all duration-300 cursor-pointer group">
             <div className="w-16 h-16 text-gray-800 transition-transform duration-300 group-hover:scale-110">
               <svg
                 viewBox="0 0 24 24"
