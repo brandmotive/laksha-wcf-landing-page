@@ -3,6 +3,7 @@ import EnquireNow from "./components/layout/EnquireNow";
 import HeroSection from "./components/sections/HeroSection";
 import QuickActions from "./components/sections/QuickActions";
 import AboutUs from "./components/sections/AboutUs";
+import LeadingHospitals from "./components/sections/LeadingHospitals";
 import FadeIn from "./components/common/FadeIn";
 
 function App() {
@@ -30,6 +31,11 @@ function App() {
         {/* About Us section */}
         <FadeIn delay={100}>
           <AboutUs />
+        </FadeIn>
+
+        {/* Leading Hospitals section */}
+        <FadeIn delay={100}>
+          <LeadingHospitals />
         </FadeIn>
       </main>
     </>
