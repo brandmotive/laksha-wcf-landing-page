@@ -17,8 +17,8 @@ const AboutUs: React.FC = () => {
 
             <div className="flex flex-col gap-4 text-gray-700 leading-relaxed md:text-base">
               <p className='text-[13px]'>
-                <span className="font-bold">Best Maternity Hospital in Anna Nagar, Chennai</span>,
-                In the bustling locality of Anna Nagar, Chennai, expectant mothers are fortunate
+                <span className="font-bold">Best Maternity Hospital in Chennai</span>,
+                In the bustling locality of Chennai, expectant mothers are fortunate
                 to have access to one of the premier maternity hospitals in the region.
                 Renowned for its exceptional care and state-of-the-art facilities,
                 this establishment stands out as a beacon of excellence in maternal healthcare.
@@ -39,15 +39,15 @@ const AboutUs: React.FC = () => {
               </p>
 
               <p className='text-[13px]'>
-                Moreover, the hospital's affiliation with Rainbow Children's Hospital,
+                Moreover, the hospital's affiliation with Hospital,
                 renowned for its expertise in pediatric care, further enhances its
-                reputation as the best maternity hospital in Anna Nagar. This
+                reputation as the best maternity hospital in Chennai. This
                 partnership ensures seamless continuity of care for both mother
                 and baby, with access to specialized services and advanced medical
                 interventions if needed. With a focus on innovation and excellence,
                 coupled with a deep commitment to maternal and child health,
                 this maternity hospital stands as a beacon of hope and support
-                for families in Anna Nagar and beyond, embodying the highest
+                for families in Chennai and beyond, embodying the highest
                 standards of healthcare excellence in the field of obstetrics
                 and gynecology.
               </p>

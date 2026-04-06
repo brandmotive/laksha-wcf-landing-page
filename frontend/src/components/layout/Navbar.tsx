@@ -1,5 +1,6 @@
 import { useState, useEffect } from "react";
-import logo from "../../assets/images/finalLogo.png";
+// import logo from "../../assets/images/finalLogo.png";
+import logo from "../../assets/images/hospital_logo.png";
 import { useScrolled } from "../../hooks/useScrolled";
 import { navMenu } from "../../data/navMenu";
 import MobileDrawer from "./MobileDrawer";
@@ -87,7 +88,7 @@ export default function Navbar() {
       <header className={`fixed top-0 left-0 right-0 z-[60] w-full transition-all duration-300 mx-auto ${headerBg}`}>
 
         {/* ROW 1: Logo + Actions — centered with symmetric horizontal padding  */}
-        <div className="flex items-center justify-around px-[10vw] py-4 h-[13vh] mb-10">
+        <div className="flex items-center justify-around px-[10vw] py-4 h-[13vh] mb-3">
 
           {/* Logo */}
           <div className="flex flex-col shrink-0">

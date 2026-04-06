@@ -4,6 +4,8 @@ import HeroSection from "./components/sections/HeroSection";
 import QuickActions from "./components/sections/QuickActions";
 import AboutUs from "./components/sections/AboutUs";
 import LeadingHospitals from "./components/sections/LeadingHospitals";
+import Blogs from "./components/sections/Blogs";
+import FAQs from "./components/sections/FAQs";
 import FadeIn from "./components/common/FadeIn";
 
 function App() {
@@ -36,6 +38,16 @@ function App() {
         {/* Leading Hospitals section */}
         <FadeIn delay={100}>
           <LeadingHospitals />
+        </FadeIn>
+
+        {/* Blogs Section */}
+        <FadeIn delay={100}>
+          <Blogs />
+        </FadeIn>
+
+        {/* FAQs Section */}
+        <FadeIn delay={100}>
+          <FAQs />
         </FadeIn>
       </main>
     </>
