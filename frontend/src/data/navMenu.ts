@@ -56,33 +56,37 @@ export const navMenu: NavItem[] = [
       { label: "Uro-Gynecology", href: "#" },
     ],
   },
+  // {
+  //   label: "Fertility Care",
+  //   children: [
+  //     { label: "IUI", href: "#" },
+  //     { label: "IVF & ART", href: "#" },
+  //     { label: "Donor Egg Program", href: "#" },
+  //     { label: "Surrogacy", href: "#" },
+  //     { label: "Fertility Preservation", href: "#" },
+  //   ],
+  // },
   {
-    label: "Fertility Care",
-    children: [
-      { label: "IUI", href: "#" },
-      { label: "IVF & ART", href: "#" },
-      { label: "Donor Egg Program", href: "#" },
-      { label: "Surrogacy", href: "#" },
-      { label: "Fertility Preservation", href: "#" },
-    ],
-  },
-  {
-    label: "International Patients",
+    label: "Packages",
     href: "#",
   },
   {
-    label: "Academics & Research",
+    label: "About Us",
     href: "#",
   },
   {
-    label: "Investor Relations",
-    children: [
-      { label: "Annual Reports", href: "#" },
-      { label: "Corporate Governance", href: "#" },
-      { label: "Financial Results", href: "#" },
-      { label: "Investor Presentations", href: "#" },
-    ],
+    label: "Blogs",
+    href: "#",
   },
+  // {
+  //   label: "Investor Relations",
+  //   children: [
+  //     { label: "Annual Reports", href: "#" },
+  //     { label: "Corporate Governance", href: "#" },
+  //     { label: "Financial Results", href: "#" },
+  //     { label: "Investor Presentations", href: "#" },
+  //   ],
+  // },
   {
     label: "Our Hospitals",
     children: [

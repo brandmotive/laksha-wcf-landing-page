@@ -104,53 +104,55 @@ export default function Navbar() {
   //   : "bg-white/50";
 
   const headerBg = isScrolled
-    ? "bg-white shadow-md"
-    : "bg-white md:bg-white/50";
+    ? "bg-white shadow-md border-b-[4px] border-[#ba98ce] rounded-b-3xl"
+    : "bg-white md:bg-white/30";
 
   return (
     <>
-      <header className={`fixed top-0 left-0 right-0 z-[60] w-full transition-all duration-300 mx-auto border-b-[6px] border-[#ba98ce] rounded-b-3xl ${headerBg}`}>
+      <header className={`fixed top-0 left-0 right-0 z-[60] w-full flex flex-row justify-center transition-all duration-300 mx-auto ${headerBg}`}>
 
-        {/* ROW 1: Logo + Actions — centered with symmetric horizontal padding  */}
-        {/* py-4  */}
-        <div className="flex items-center justify-around px-[10vw] my-2">
+        <div className="w-[90%] h-full md:w-[70%]">
+          {/* ROW 1: Logo + Actions — centered4with symmetric horizontal padding  */}
+          {/* py-4  */}
+          <div className="flex items-center justify-between my-2">
 
-          {/* Logo */}
-          <div className="flex flex-col shrink-0">
-            <div className="flex items-center gap-2">
-              <img src={logo} alt="WCF" className="h-16 sm:h-18 md:h-16 w-auto object-contain" />
+            {/* Logo */}
+            <div className="flex flex-col shrink-0">
+              <div className="flex items-center gap-2">
+                <img src={logo} alt="WCF" className="h-10 sm:h-12 md:h-16 w-auto object-contain" />
+              </div>
+            </div>
+
+            {/* Right-side actions */}
+            <div className="flex items-center gap-2 md:gap-3">
+
+              {/* Appointment + Emergency — visible from ≥600px */}
+              <div className="hidden min-[600px]:flex items-center gap-2">
+                <AppointmentButton />
+                <EmergencyButton />
+              </div>
+
+              {/* Hamburger — visible on <992px */}
+              <button
+                aria-label="Open menu"
+                onClick={() => setDrawerOpen(true)}
+                className="min-[992px]:hidden flex flex-col justify-center items-center w-9 h-9 gap-[5px] rounded-md hover:bg-gray-100/80 transition-colors duration-200 shrink-0"
+              >
+                <span className="block w-5 h-0.5 bg-gray-700 rounded" />
+                <span className="block w-5 h-0.5 bg-gray-700 rounded" />
+                <span className="block w-5 h-0.5 bg-gray-700 rounded" />
+              </button>
             </div>
           </div>
 
-          {/* Right-side actions */}
-          <div className="flex items-center gap-2 md:gap-3">
-
-            {/* Appointment + Emergency — visible from ≥600px */}
-            <div className="hidden min-[600px]:flex items-center gap-2">
-              <AppointmentButton />
-              <EmergencyButton />
-            </div>
-
-            {/* Hamburger — visible on <992px */}
-            <button
-              aria-label="Open menu"
-              onClick={() => setDrawerOpen(true)}
-              className="min-[992px]:hidden flex flex-col justify-center items-center w-9 h-9 gap-[5px] rounded-md hover:bg-gray-100/80 transition-colors duration-200 shrink-0"
-            >
-              <span className="block w-5 h-0.5 bg-gray-700 rounded" />
-              <span className="block w-5 h-0.5 bg-gray-700 rounded" />
-              <span className="block w-5 h-0.5 bg-gray-700 rounded" />
-            </button>
+          {/* ══ ROW 2: Desktop Nav Links — aligned with Row 1 content ═══ */}
+          <div className="hidden min-[992px]:block border-t border-gray-400">
+            <nav className="w-full my-4 flex justify-center gap-6 xl:gap-8">
+              {navMenu.map((item) => (
+                <DesktopNavItem key={item.label} item={item} />
+              ))}
+            </nav>
           </div>
-        </div>
-
-        {/* ══ ROW 2: Desktop Nav Links — aligned with Row 1 content ═══ */}
-        <div className="hidden min-[992px]:block border-t border-gray-400">
-          <nav className="w-full my-4 flex justify-center gap-6 xl:gap-8">
-            {navMenu.map((item) => (
-              <DesktopNavItem key={item.label} item={item} />
-            ))}
-          </nav>
         </div>
 
       </header>
