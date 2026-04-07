@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
 // import logo from "../../assets/images/finalLogo.png";
-import logo from "../../assets/images/hospital_logo.png";
+// import logo from "../../assets/images/hospital_logo.png";
+import logo from "../../assets/images/HospitalLogo.png";
 import { useScrolled } from "../../hooks/useScrolled";
 import { navMenu } from "../../data/navMenu";
 import MobileDrawer from "./MobileDrawer";
@@ -8,18 +9,42 @@ import MobileDrawer from "./MobileDrawer";
 // ── Desktop second-row nav item with dropdown arrow ──────────────────────────
 const DesktopNavItem = ({ item }: { item: (typeof navMenu)[number] }) => {
   const hasChildren = item.children && item.children.length > 0;
+
   return (
-    <a
-      href={item.href ?? "#"}
-      className="flex items-center gap-1 text-[13px] font-medium text-gray-700 hover:text-[#6B2D8B] transition-colors duration-200 whitespace-nowrap cursor-pointer py-1"
-    >
-      {item.label}
+    <div className="group relative flex items-center h-full">
+      <a
+        href={item.href ?? "#"}
+        className="flex items-center gap-1 text-[13px] font-medium text-gray-700 group-hover:text-[#6B2D8B] transition-colors duration-200 whitespace-nowrap cursor-pointer h-full border-b-[3px] border-transparent group-hover:border-[#6B2D8B]"
+      >
+        {item.label}
+        {hasChildren && (
+          <svg className="w-3 h-3 text-gray-500 group-hover:rotate-180 transition-transform duration-200" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
+          </svg>
+        )}
+      </a>
+
+      {/* Mega Menu Dropdown */}
       {hasChildren && (
-        <svg className="w-3 h-3 text-gray-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
-        </svg>
+        <div className="absolute top-full left-0 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300 z-50 bg-white shadow-[0_10px_20px_rgba(0,0,0,0.1)] border border-gray-100 w-max">
+          <div className="p-4 rounded-b-md">
+            <div className={`grid gap-x-8 gap-y-3 ${item.children!.length > 15 ? 'grid-cols-4' :
+              item.children!.length > 8 ? 'grid-cols-2' : 'grid-cols-1'
+              }`}>
+              {item.children!.map((child, idx) => (
+                <a
+                  key={idx}
+                  href={child.href}
+                  className="text-[13px] text-gray-600 hover:text-[#6B2D8B] hover:bg-gray-50 transition-colors flex items-center py-2 px-2 border-b border-gray-100 last:border-b-0"
+                >
+                  {child.label}
+                </a>
+              ))}
+            </div>
+          </div>
+        </div>
       )}
-    </a>
+    </div>
   );
 };
 
@@ -121,7 +146,7 @@ export default function Navbar() {
 
         {/* ══ ROW 2: Desktop Nav Links — aligned with Row 1 content ═══ */}
         <div className="hidden min-[992px]:block border-t border-gray-400">
-          <nav className="w-full h-[10vh] flex justify-center gap-6 xl:gap-8 ">
+          <nav className="w-full h-[10vh] flex justify-center gap-6 xl:gap-8">
             {navMenu.map((item) => (
               <DesktopNavItem key={item.label} item={item} />
             ))}
