@@ -2,7 +2,7 @@
 
 This repository contains the frontend application and infrastructure-as-code for the Laksha WCF landing page. 
 
-It is built with **Vite, React, TypeScript, and Tailwind CSS**. High-availability hosting is configured on AWS using **S3 and CloudFront**, managed entirely via **Terraform** and deployed via **GitHub Actions**.
+It is built with **Vite, React, TypeScript, and Tailwind CSS**. High-availability hosting is configured on AWS using **S3 and CloudFront**, managed entirely via **Terraform** and deployed via **Jenkins**.
 
 ---
 
@@ -12,7 +12,9 @@ It is built with **Vite, React, TypeScript, and Tailwind CSS**. High-availabilit
 - `terraform/` - Contains all AWS infrastructure configurations.
   - `bootstrap/` - One-time setup for the Terraform state bucket and OIDC role.
   - `environments/` - Environment-specific configuration files (`.tfvars`).
-- `.github/workflows/` - Contains the CI/CD deployment pipeline.
+- `Jenkinsfile` - The declarative CI/CD deploy pipeline.
+- `Jenkinsfile.destroy` - The declarative CI/CD destroy pipeline (manual trigger only).
+- `.github/workflows/` - (Legacy) GitHub Actions workflows — superseded by Jenkins.
 
 ---
 
@@ -44,41 +46,113 @@ To run the React application on your local machine:
 
 ---
 
-## 🚀 CI/CD & Environments
+## 🚀 CI/CD — Jenkins
 
-Deployments are entirely automated using GitHub Actions. We use **GitHub OIDC** (OpenID Connect) to authenticate to AWS, meaning there are **no long-lived AWS secret keys stored in GitHub**.
+Deployments are automated using **Jenkins** with a **Multibranch Pipeline**. Jenkins integrates with GitHub via a **GitHub App** and uses the **GitHub Checks plugin** to report pipeline status directly on commits and pull requests.
 
-### The Environments Explained (For Newcomers)
-In modern software development, we use a process called "Release Management" to make sure broken code never reaches the live site. We do this by passing work through different stages:
+The Jenkins agent (EC2 slave) has only **Docker** installed. All tools — Terraform, Node.js, and AWS CLI — run as Docker containers per stage.
+
+### Docker Images Used
+
+| Stage | Image | Purpose |
+|-------|-------|---------|
+| Terraform Init / Plan / Apply | `hashicorp/terraform:1.12.0` | Infrastructure management |
+| Build Frontend | `node:24-alpine` | `npm ci` + `npm run build` |
+| Deploy to S3 | `amazon/aws-cli:latest` | S3 sync + CloudFront invalidation |
+
+### The Environments
 
 1. **🛠 Dev (Development)** — *The Sandbox*
-   *   **What it is:** A safe place to test new code in a real cloud environment.
-   *   **Rule of thumb:** It’s okay if things break here. When you finish a new feature or fix a bug, push it to the `dev` branch to see how it looks on a real server, not just your local machine.
    *   **URL:** [https://dev.lakshawcfhospitals.in](https://dev.lakshawcfhospitals.in)
 
 2. **🎭 Staging** — *The Dress Rehearsal*
-   *   **What it is:** An exact, identical clone of Production. 
-   *   **Rule of thumb:** This is the final checkpoint. You, the team, or clients review the site here to verify it works perfectly before the public sees it. If a bug makes it here, we fix it *before* pushing to Prod.
    *   **URL:** [https://staging.lakshawcfhospitals.in](https://staging.lakshawcfhospitals.in)
 
 3. **🌟 Prod (Production)** — *The Live Show*
-   *   **What it is:** The real, live website that real patients and customers interact with.
-   *   **Rule of thumb:** This must be 100% stable. Only code that has survived Dev and Staging gets pushed to the `main` branch.
    *   **URL:** [https://lakshawcfhospitals.in](https://lakshawcfhospitals.in) (and www)
 
 ### Branches & Automatic Deployment
 Deployments are mapped automatically based on the branch you push to:
-- Push to **`dev`** branch ➔ Deploys to the **`dev`** environment (`dev.lakshawcfhospitals.in`).
-- Push to **`staging`** branch ➔ Deploys to the **`staging`** environment (`staging.lakshawcfhospitals.in`).
-- Push to **`main`** branch ➔ Deploys to the **`prod`** environment (`lakshawcfhospitals.in` and `www.lakshawcfhospitals.in`).
+- Push to **`dev`** branch ➔ Deploys to the **`dev`** environment.
+- Push to **`staging`** branch ➔ Deploys to the **`staging`** environment.
+- Push to **`main`** branch ➔ Deploys to the **`prod`** environment.
 
-> **Note:** You can also trigger a deployment manually using the "Run workflow" button in the GitHub Actions tab (via `workflow_dispatch`).
+### The Deploy Pipeline (`Jenkinsfile`)
 
-### The Deployment Pipeline
-When a deployment triggers, it goes through 3 stages:
-1. **Plan:** Terraform calculates what infrastructure needs to change and saves the plan. The plan is published in the GitHub Actions Job Summary for you to review.
-2. **Apply (Requires Approval):** Before making changes, GitHub pauses. A repository maintainer must click the **Approve** button in the GitHub UI for the target environment. Once approved, Terraform applies the infrastructure changes.
-3. **Deploy:** The frontend application is built (`npm run build`) and the static assets in `frontend/dist/` are synced securely to the AWS S3 bucket. Finally, the CloudFront cache is invalidated to serve the fresh website.
+When a push triggers the pipeline, it goes through these stages:
+
+1. **Terraform Init** — Initializes Terraform with the correct backend key for the environment. Also runs `validate` and `fmt -check`.
+2. **Terraform Plan** — Calculates what infrastructure needs to change and saves the plan.
+3. **Publish Plan** — Posts the plan summary as a GitHub Check on the commit for review.
+4. **Approval** — Pipeline pauses. A maintainer must click **"Apply"** in the Jenkins UI. _(Only if changes exist; times out after 1 hour.)_
+5. **Terraform Apply** — Applies the approved infrastructure changes.
+6. **Export Outputs** — Reads S3 bucket name and CloudFront distribution ID from Terraform state.
+7. **Build Frontend** — Runs `npm ci && npm run build` in the `frontend/` directory.
+8. **Deploy** — Syncs `frontend/dist/` to S3 and invalidates the CloudFront cache.
+
+### The Destroy Pipeline (`Jenkinsfile.destroy`)
+
+Triggered **manually only** from the Jenkins UI with an **ENVIRONMENT** parameter:
+
+1. **Terraform Init** → **Plan Destroy** → **Approval** → **Apply Destroy**
+
+> ⚠️ This will **permanently delete** all AWS resources for the selected environment.
+
+---
+
+## 🔌 Jenkins Setup Prerequisites
+
+### Required Plugins
+
+| Plugin | Purpose |
+|--------|---------|
+| **GitHub Branch Source** | Multibranch pipeline scanning via GitHub App |
+| **GitHub Checks** | `publishChecks()` for commit/PR status |
+| **Checks API** | Dependency of GitHub Checks |
+| **Pipeline** | Declarative pipeline support |
+| **Pipeline Utility Steps** | `readJSON`, `readFile` in pipeline scripts |
+| **Docker Pipeline** | Docker container agents (`agent { docker { ... } }`) |
+| **AWS Credentials** | AWS Access Key injection via `withCredentials` |
+| **AnsiColor** | Colored Terraform output in build logs |
+| **Timestamper** | Timestamps in build logs |
+
+### GitHub App Configuration
+
+1. Create a GitHub App in `brandmotive` org → **Developer settings → GitHub Apps → New**
+2. Set the following permissions:
+   - **Checks:** Read & Write
+   - **Commit statuses:** Read & write
+   - **Contents:** Read-only
+   - **Metadata:** Read-only
+   - **Pull Requests:** Read-only
+3. Subscribe to events: **Push**, **Pull Request**, **Check Run**, **Check Suite**
+4. Set Webhook URL to: `https://<your-jenkins-url>/github-webhook/`
+5. Generate a private key and convert to PKCS8:
+   ```bash
+   openssl pkcs8 -topk8 -inform PEM -outform PEM -in your-key.pem -out converted-key.pem -nocrypt
+   ```
+6. Install the app on the `laksha-wcf-landing-page` repository.
+
+### Jenkins Credentials
+
+Add these credentials in **Manage Jenkins → Credentials → System → Global**:
+
+| ID | Kind | Description |
+|----|------|-------------|
+| `github-app-creds` | GitHub App | App ID + converted PKCS8 private key |
+| `aws-credentials-id` | AWS Credentials | Access Key ID + Secret Access Key for the CI IAM user |
+
+### Jenkins Jobs
+
+1. **Multibranch Pipeline** (Deploy)
+   - Source: GitHub, credential: `github-app-creds`
+   - Discover branches: `main`, `staging`, `dev`
+   - Build Configuration: by Jenkinsfile → `Jenkinsfile`
+
+2. **Pipeline Job** (Destroy)
+   - Source: Pipeline from SCM → `Jenkinsfile.destroy`
+   - Parameterized: `ENVIRONMENT` (choice: dev / staging / prod)
+   - Trigger: Manual only
 
 ---
 
@@ -86,18 +160,19 @@ When a deployment triggers, it goes through 3 stages:
 
 The AWS infrastructure consists of:
 - A private **S3 Bucket** to store the built frontend assets.
-- A **CloudFront Distribution** that acts as a CDN, providing fast global caching, HTTPS encryption, and SPA (Single Page Application) routing (safely routing 4xx errors back to `index.html`).
+- A **CloudFront Distribution** that acts as a CDN, providing fast global caching, HTTPS encryption, and SPA routing.
 - **ACM Certificates** for secure SSL/HTTPS on our domains.
 - **Route 53** records pointing the domains directly to CloudFront.
 
-State is kept remotely in S3 with native file locking (`use_lockfile = true`) allowing multiple developers to collaborate safely without colliding.
+State is kept remotely in S3 with native file locking (`use_lockfile = true`).
 
-### Bootstrapping (One-Time Setup context)
-If you ever need to deploy this repository to an entirely new AWS account, a manual bootstrap process is required *first* to set up the remote backend:
+### Bootstrapping (One-Time Setup)
+If deploying to an entirely new AWS account, a manual bootstrap process is required *first* to set up the remote backend:
 
 ```bash
 cd terraform/bootstrap
 terraform init
-terraform apply 
+terraform apply
 ```
-After bootstrapping runs, take the resulting `AWS_ROLE_ARN` output and add it as a repository variable in GitHub (`Settings -> Secrets and variables -> Actions -> Variables`). Also, configure the "Required reviewers" in the repository Environments tab.
+
+After bootstrapping, take the resulting `AWS_ROLE_ARN` output and configure your Jenkins AWS credentials to assume that role (if using role-based access). Also, configure the GitHub App and install it on the repository.

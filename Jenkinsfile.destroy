@@ -1,0 +1,241 @@
+// =============================================================================
+// Destroy: Terraform Destroy All Infrastructure
+// =============================================================================
+// Triggered ONLY manually from the Jenkins UI.
+// Uses a parameterized build to select the target environment.
+//
+// Flow: Init → Plan Destroy → (Approval) → Apply Destroy
+//
+// All tools run as Docker containers on the Jenkins agent:
+//   - hashicorp/terraform → all Terraform stages
+// =============================================================================
+
+pipeline {
+    agent any
+
+    parameters {
+        choice(
+            name: 'ENVIRONMENT',
+            choices: ['dev', 'staging', 'prod'],
+            description: 'Target environment to destroy'
+        )
+    }
+
+    options {
+        timestamps()
+        buildDiscarder(logRotator(numToKeepStr: '10'))
+        disableConcurrentBuilds()
+    }
+
+    environment {
+        AWS_REGION       = 'ap-south-1'
+        TF_IN_AUTOMATION = 'true'
+    }
+
+    stages {
+        // =====================================================================
+        // Stage 1: Terraform Init
+        // =====================================================================
+        stage('Terraform Init') {
+            agent {
+                docker {
+                    image 'hashicorp/terraform:1.12.0'
+                    reuseNode true
+                }
+            }
+            steps {
+                publishChecks(
+                    name: 'Destroy Pipeline',
+                    status: 'IN_PROGRESS',
+                    title: "Terraform Init (${params.ENVIRONMENT})",
+                    summary: 'Initializing Terraform for destroy operation...'
+                )
+
+                dir('terraform') {
+                    withCredentials([[
+                        $class: 'AmazonWebServicesCredentialsBinding',
+                        credentialsId: 'aws-credentials-id'
+                    ]]) {
+                        sh """
+                            terraform init \
+                                -input=false \
+                                -backend-config="key=laksha-wcf-landing-page/${params.ENVIRONMENT}/terraform.tfstate"
+                        """
+                    }
+                }
+            }
+        }
+
+        // =====================================================================
+        // Stage 2: Terraform Plan Destroy
+        // =====================================================================
+        stage('Terraform Plan Destroy') {
+            agent {
+                docker {
+                    image 'hashicorp/terraform:1.12.0'
+                    reuseNode true
+                }
+            }
+            steps {
+                publishChecks(
+                    name: 'Destroy Pipeline',
+                    status: 'IN_PROGRESS',
+                    title: "Plan Destroy (${params.ENVIRONMENT})",
+                    summary: 'Generating destroy execution plan...'
+                )
+
+                dir('terraform') {
+                    withCredentials([[
+                        $class: 'AmazonWebServicesCredentialsBinding',
+                        credentialsId: 'aws-credentials-id'
+                    ]]) {
+                        script {
+                            def exitCode = sh(
+                                script: """
+                                    terraform plan \
+                                        -destroy \
+                                        -var-file="environments/${params.ENVIRONMENT}.tfvars" \
+                                        -out=tfplan \
+                                        -detailed-exitcode \
+                                        -input=false
+                                """,
+                                returnStatus: true
+                            )
+
+                            if (exitCode == 0) {
+                                env.HAS_CHANGES = 'false'
+                                echo 'No resources to destroy.'
+                            } else if (exitCode == 2) {
+                                env.HAS_CHANGES = 'true'
+                                echo 'Resources to destroy detected.'
+                            } else {
+                                error('Terraform plan failed.')
+                            }
+
+                            // Generate human-readable plan output
+                            sh 'terraform show -no-color tfplan > plan-output.txt'
+                        }
+                    }
+                }
+            }
+        }
+
+        // =====================================================================
+        // Stage 3: Publish Plan Summary
+        // =====================================================================
+        stage('Publish Plan') {
+            steps {
+                script {
+                    def planText = readFile('terraform/plan-output.txt').trim()
+
+                    if (planText.length() > 60000) {
+                        planText = planText.substring(0, 60000) +
+                            '\n\n... [truncated — see Jenkins console for full output]'
+                    }
+
+                    publishChecks(
+                        name: 'Terraform Destroy Plan',
+                        status: 'COMPLETED',
+                        conclusion: 'NEUTRAL',
+                        title: "Destroy Plan — ${params.ENVIRONMENT} (changes: ${env.HAS_CHANGES})",
+                        summary: "Terraform destroy plan for **${params.ENVIRONMENT}** completed. " +
+                                 "Resources to remove: **${env.HAS_CHANGES}**.",
+                        text: "```hcl\n${planText}\n```"
+                    )
+                }
+            }
+        }
+
+        // =====================================================================
+        // Stage 4: Manual Approval
+        // =====================================================================
+        stage('Approval') {
+            when {
+                expression { env.HAS_CHANGES == 'true' }
+            }
+            steps {
+                publishChecks(
+                    name: 'Destroy Pipeline',
+                    status: 'IN_PROGRESS',
+                    title: "Awaiting Destroy Approval (${params.ENVIRONMENT})",
+                    summary: "⚠️ Terraform will DESTROY all resources in **${params.ENVIRONMENT}**. Waiting for approval."
+                )
+
+                timeout(time: 1, unit: 'HOURS') {
+                    input(
+                        message: "⚠️ DESTROY all infrastructure in ${params.ENVIRONMENT}?\nThis action is irreversible!",
+                        ok: 'Destroy'
+                    )
+                }
+            }
+        }
+
+        // =====================================================================
+        // Stage 5: Terraform Apply Destroy
+        // =====================================================================
+        stage('Terraform Destroy') {
+            when {
+                expression { env.HAS_CHANGES == 'true' }
+            }
+            agent {
+                docker {
+                    image 'hashicorp/terraform:1.12.0'
+                    reuseNode true
+                }
+            }
+            steps {
+                publishChecks(
+                    name: 'Destroy Pipeline',
+                    status: 'IN_PROGRESS',
+                    title: "Destroying Infrastructure (${params.ENVIRONMENT})",
+                    summary: 'Applying destroy plan...'
+                )
+
+                dir('terraform') {
+                    withCredentials([[
+                        $class: 'AmazonWebServicesCredentialsBinding',
+                        credentialsId: 'aws-credentials-id'
+                    ]]) {
+                        sh 'terraform apply -input=false -auto-approve tfplan'
+                    }
+                }
+            }
+        }
+    }
+
+    // =========================================================================
+    // Post Actions
+    // =========================================================================
+    post {
+        success {
+            publishChecks(
+                name: 'Destroy Pipeline',
+                status: 'COMPLETED',
+                conclusion: 'SUCCESS',
+                title: "Destroy Succeeded (${params.ENVIRONMENT})",
+                summary: "All infrastructure in **${params.ENVIRONMENT}** has been destroyed."
+            )
+        }
+        failure {
+            publishChecks(
+                name: 'Destroy Pipeline',
+                status: 'COMPLETED',
+                conclusion: 'FAILURE',
+                title: "Destroy Failed (${params.ENVIRONMENT})",
+                summary: "Destroy pipeline failed for **${params.ENVIRONMENT}**. Check Jenkins console output."
+            )
+        }
+        aborted {
+            publishChecks(
+                name: 'Destroy Pipeline',
+                status: 'COMPLETED',
+                conclusion: 'CANCELED',
+                title: "Destroy Cancelled (${params.ENVIRONMENT})",
+                summary: "Destroy pipeline was aborted for **${params.ENVIRONMENT}**."
+            )
+        }
+        always {
+            cleanWs()
+        }
+    }
+}
