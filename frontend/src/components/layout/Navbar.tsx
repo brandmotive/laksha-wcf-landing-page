@@ -109,16 +109,16 @@ export default function Navbar() {
 
   return (
     <>
-
       <header className={`fixed top-0 left-0 right-0 z-[60] w-full transition-all duration-300 mx-auto border-b-[6px] border-[#ba98ce] rounded-b-3xl ${headerBg}`}>
 
         {/* ROW 1: Logo + Actions — centered with symmetric horizontal padding  */}
-        <div className="flex items-center justify-around px-[10vw] py-4 h-[13vh] mb-3">
+        {/* py-4  */}
+        <div className="flex items-center justify-around px-[10vw] my-2">
 
           {/* Logo */}
           <div className="flex flex-col shrink-0">
             <div className="flex items-center gap-2">
-              <img src={logo} alt="WCF" className="h-16 sm:h-18 md:h-20 w-auto object-contain" />
+              <img src={logo} alt="WCF" className="h-16 sm:h-18 md:h-16 w-auto object-contain" />
             </div>
           </div>
 
@@ -146,7 +146,7 @@ export default function Navbar() {
 
         {/* ══ ROW 2: Desktop Nav Links — aligned with Row 1 content ═══ */}
         <div className="hidden min-[992px]:block border-t border-gray-400">
-          <nav className="w-full h-[10vh] flex justify-center gap-6 xl:gap-8">
+          <nav className="w-full my-4 flex justify-center gap-6 xl:gap-8">
             {navMenu.map((item) => (
               <DesktopNavItem key={item.label} item={item} />
             ))}
