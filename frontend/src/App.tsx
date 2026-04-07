@@ -7,6 +7,7 @@ import LeadingHospitals from "./components/sections/LeadingHospitals";
 import Blogs from "./components/sections/Blogs";
 import FAQs from "./components/sections/FAQs";
 import FadeIn from "./components/common/FadeIn";
+import PackagesSection from "./components/sections/PackagesSection";
 
 function App() {
   return (
@@ -29,6 +30,11 @@ function App() {
             <QuickActions />
           </FadeIn>
         </div>
+
+        {/* Packages section */}
+        <FadeIn delay={100}>
+          <PackagesSection />
+        </FadeIn>
 
         {/* About Us section */}
         <FadeIn delay={100}>
