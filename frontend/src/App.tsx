@@ -1,3 +1,4 @@
+import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Navbar from "./components/layout/Navbar";
 import EnquireNow from "./components/layout/EnquireNow";
 import HeroSection from "./components/sections/HeroSection";
@@ -8,13 +9,13 @@ import Blogs from "./components/sections/Blogs";
 import FAQs from "./components/sections/FAQs";
 import FadeIn from "./components/common/FadeIn";
 import PackagesSection from "./components/sections/PackagesSection";
+import ServiceDetailPage from "./pages/ServiceDetailPage";
 
-function App() {
+// ── Home Page ─────────────────────────────────────────────────────────────────
+function HomePage() {
   return (
     <>
-      {/* Fixed right-side Enquire Now pill */}
       <EnquireNow />
-
       <div className="md:relative">
         <Navbar />
         <FadeIn direction="none">
@@ -23,40 +24,38 @@ function App() {
       </div>
 
       <main className="flex flex-col gap-10">
-
-        {/* Quick Actions section for Mobile Screen */}
+        {/* Quick Actions — mobile only */}
         <div className="md:hidden">
           <FadeIn delay={200}>
             <QuickActions />
           </FadeIn>
         </div>
 
-        {/* Packages section */}
-        <FadeIn delay={100}>
-          <PackagesSection />
-        </FadeIn>
-
-        {/* About Us section */}
-        <FadeIn delay={100}>
-          <AboutUs />
-        </FadeIn>
-
-        {/* Leading Hospitals section */}
-        <FadeIn delay={100}>
-          <LeadingHospitals />
-        </FadeIn>
-
-        {/* Blogs Section */}
-        <FadeIn delay={100}>
-          <Blogs />
-        </FadeIn>
-
-        {/* FAQs Section */}
-        <FadeIn delay={100}>
-          <FAQs />
-        </FadeIn>
+        <FadeIn delay={100}><PackagesSection /></FadeIn>
+        <FadeIn delay={100}><AboutUs /></FadeIn>
+        <FadeIn delay={100}><LeadingHospitals /></FadeIn>
+        <FadeIn delay={100}><Blogs /></FadeIn>
+        <FadeIn delay={100}><FAQs /></FadeIn>
       </main>
     </>
+  );
+}
+
+// ── App with Router ───────────────────────────────────────────────────────────
+function App() {
+  return (
+    <BrowserRouter>
+      <Routes>
+        {/* Home */}
+        <Route path="/" element={<HomePage />} />
+
+        {/* Service detail — reusable for all sub-items */}
+        <Route path="/service/:slug" element={<ServiceDetailPage />} />
+
+        {/* Catch-all → home */}
+        <Route path="*" element={<HomePage />} />
+      </Routes>
+    </BrowserRouter>
   );
 }
 
