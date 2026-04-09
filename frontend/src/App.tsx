@@ -10,6 +10,7 @@ import FAQs from "./components/sections/FAQs";
 import FadeIn from "./components/common/FadeIn";
 import PackagesSection from "./components/sections/PackagesSection";
 import ServiceDetailPage from "./pages/ServiceDetailPage";
+import PackageDetailPage from "./pages/PackageDetailPage";
 
 // ── Home Page ─────────────────────────────────────────────────────────────────
 function HomePage() {
@@ -51,6 +52,9 @@ function App() {
 
         {/* Service detail — reusable for all sub-items */}
         <Route path="/service/:slug" element={<ServiceDetailPage />} />
+
+        {/* Package detail pages */}
+        <Route path="/package/:packageId" element={<PackageDetailPage />} />
 
         {/* Catch-all → home */}
         <Route path="*" element={<HomePage />} />
