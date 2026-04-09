@@ -29,11 +29,11 @@ const LeadingHospitals: React.FC = () => {
         {/* Header Section */}
         <div className="text-center w-full flex flex-col gap-5 justify-between mb-10">
           <h2 className="text-3xl md:text-4xl font-bold text-gray-900 tracking-tight">
-            Leading Hospitals
+            Our Hospitals
           </h2>
           <div className="flex justify-center flex-col items-center">
             <p className="text-gray-700 leading-relaxed text-sm md:text-[15px] max-w-4xl text-center pb-8 border-b border-gray-200">
-              Rainbow Children's Hospital stands as a testament to the hospital's continual
+              Our Hospital stands as a testament to the hospital's continual
               pursuit of excellence and innovation, providing specialized care for women and children.
             </p>
           </div>
