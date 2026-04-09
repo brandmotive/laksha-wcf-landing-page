@@ -1,5 +1,6 @@
-import React, { useState, useEffect } from "react";
+import { useState, useEffect } from "react";
 import { createPortal } from "react-dom";
+import { useNavigate } from "react-router-dom";
 
 interface PackageData {
   id: string;
@@ -13,20 +14,22 @@ interface PackageData {
 const packages: PackageData[] = [
   {
     id: "pkg-1",
-    title: "Twin Sharing (Pink Package)",
-    price: "₹45,999",
-    descriptionHeading: "Facilities include:",
+    title: "Inaugural Delivery Offer (Green Package)",
+    price: "₹29,999",
+    descriptionHeading: "Applicable for pregnancies above 37 weeks",
     exclusions: [
       "Medicines: ₹10,000 (excluded)",
       "Baby charges: ₹5,000 (excluded)"
     ],
     points: [
-      "Complete antenatal care (conception to delivery)",
-      "Free Blood Tests & ultrasounds",
-      "Free CTG monitoring",
-      "Free obstetric consultations",
-      "IP hospitalization covered",
-      "45 days postnatal free consultations"
+      "Medicines: ₹10,000 (excluded)",
+      "Baby charges: ₹5,000 (excluded)",
+      // "Complete antenatal care (conception to delivery)",
+      // "Free Blood Tests & ultrasounds",
+      // "Free CTG monitoring",
+      // "Free obstetric consultations",
+      // "IP hospitalization covered",
+      // "45 days postnatal free consultations"
     ]
   },
   {
@@ -49,25 +52,27 @@ const packages: PackageData[] = [
   },
   {
     id: "pkg-3",
-    title: "Deluxe Single (Gold Package)",
-    price: "₹75,999",
+    title: "Suite Room Pink Package",
+    price: "₹99,999",
     descriptionHeading: "Facilities include:",
     exclusions: [
-      "Medicines: ₹10,000 (excluded)",
-      "Baby charges: ₹5,000 (excluded)"
+      "Medicines: ₹10,000 (excluded)"
     ],
     points: [
       "Complete antenatal care (conception to delivery)",
-      "Free Blood Tests & ultrasounds",
+      "Free Blood tests & ultrasounds",
       "Free CTG monitoring",
       "Free obstetric consultations",
       "IP hospitalization covered",
-      "45 days postnatal free consultations"
+      "45 days postnatal free consultations",
+      "Baby charges included",
+      "Painless delivery included"
     ]
   }
 ];
 
-const PackagesSection: React.FC = () => {
+const PackagesSection = () => {
+  const navigate = useNavigate();
   const [selectedPackage, setSelectedPackage] = useState<PackageData | null>(null);
   const [isPopupOpen, setIsPopupOpen] = useState(false);
   const [mounted, setMounted] = useState(false);
@@ -174,9 +179,28 @@ const PackagesSection: React.FC = () => {
           </div>
         </div>
 
-        {/* Footer (Buy Now Button) */}
-        <div className="p-6 border-t border-gray-100 flex justify-end shrink-0">
-          <button className="bg-[#7E3FAB] hover:bg-[#6B2D8B] text-white font-semibold px-8 py-3 rounded-xl transition-colors duration-200 shadow-md flex items-center gap-2">
+        {/* Footer — Buy Now + View Detail */}
+        <div className="p-6 border-t border-gray-100 flex flex-wrap items-center justify-end gap-3 shrink-0">
+          {/* View Detail */}
+          <button
+            onClick={() => {
+              if (selectedPackage) {
+                closePopup();
+                navigate(`/package/${selectedPackage.id}`);
+              }
+            }}
+            className="border-2 border-[#6B2D8B] text-[#6B2D8B] hover:bg-[#6B2D8B] hover:text-white font-semibold px-6 py-3 rounded-xl transition-all duration-200 flex items-center gap-2"
+          >
+            View Detail
+            <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
+            </svg>
+          </button>
+          {/* Buy Now */}
+          <button
+            onClick={() => { if (selectedPackage) navigate(`/package/${selectedPackage.id}`); }}
+            className="bg-[#7E3FAB] hover:bg-[#6B2D8B] text-white font-semibold px-8 py-3 rounded-xl transition-colors duration-200 shadow-md flex items-center gap-2"
+          >
             Buy Now
             <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
@@ -250,9 +274,12 @@ const PackagesSection: React.FC = () => {
                   )}
                 </ul>
 
-                {/* Detail Link glued to bottom */}
-                <div className="mt-auto flex items-center gap-1 text-[#6B2D8B] font-semibold text-sm md:text-[15px] group-hover:translate-x-1 transition-transform duration-300">
-                  detail
+                {/* More Details link — opens popup */}
+                <div
+                  className="mt-auto flex items-center gap-1 text-[#6B2D8B] font-semibold text-sm md:text-[15px] group-hover:translate-x-1 transition-transform duration-300 cursor-pointer select-none"
+                  onClick={(e) => { e.stopPropagation(); openPopup(pkg); }}
+                >
+                  More Details...
                   <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M14 5l7 7m0 0l-7 7m7-7H3" />
                   </svg>
