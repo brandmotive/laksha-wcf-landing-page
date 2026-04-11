@@ -7,26 +7,26 @@ export interface QuickAction {
 
 export const quickActions: QuickAction[] = [
   {
-    id: "book-online",
-    label: "Book Online Consultation",
+    id: "book-appointment",
+    label: "Book Appointment",
     href: "#",
     icon: "online-consultation",
   },
-  {
-    id: "book-hospital",
-    label: "Book Hospital Visit",
-    href: "#",
-    icon: "hospital-visit",
-  },
-  {
-    id: "pregnancy-tracker",
-    label: "Pregnancy Tracker",
-    href: "#",
-    icon: "pregnancy-tracker",
-  },
+  // {
+  //   id: "book-hospital",
+  //   label: "Book Hospital Visit",
+  //   href: "#",
+  //   icon: "hospital-visit",
+  // },
+  // {
+  //   id: "pregnancy-tracker",
+  //   label: "Pregnancy Tracker",
+  //   href: "#",
+  //   icon: "pregnancy-tracker",
+  // },
   {
     id: "book-scans",
-    label: "Book Scans",
+    label: "Book Packages",
     href: "#",
     icon: "book-scans",
   },

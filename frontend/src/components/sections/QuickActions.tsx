@@ -2,7 +2,7 @@ import type { JSX } from "react";
 import { quickActions } from "../../data/quickActions";
 
 // Inline SVG icons matching the design
-const icons: Record<string, JSX.Element> = {
+export const icons: Record<string, JSX.Element> = {
   "online-consultation": (
     <svg
       viewBox="0 0 48 48"
@@ -67,7 +67,7 @@ const icons: Record<string, JSX.Element> = {
 
 export default function QuickActions() {
   return (
-    <section className="h-[400px] w-full flex flex-row justify-center items-center bg-gray-100 p-8 md:p-10 lg:p-12">
+    <section className="w-full flex flex-row justify-center items-center bg-gray-100 p-8 md:p-10 lg:p-12">
       <div className="w-[85%] h-[80%] grid grid-cols-2 gap-4">
         {quickActions.map((action) => (
           <a

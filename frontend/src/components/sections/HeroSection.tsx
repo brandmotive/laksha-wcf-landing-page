@@ -1,4 +1,6 @@
 import { useState, useEffect, useCallback } from "react";
+import { quickActions } from "../../data/quickActions";
+import { icons } from "./QuickActions";
 import heroOne from "../../assets/images/heroSection/heroOne.jpg.jpeg";
 import heroTwo from "../../assets/images/heroSection/heroTwo.jpg.jpeg";
 import heroThree from "../../assets/images/heroSection/heroThree.jpg.jpeg";
@@ -69,14 +71,14 @@ export default function HeroSection() {
         />
       ))}
 
-      {/* ── White overlay — only on tablet and above (≥768px) ── */}
+      {/* ── White overlay — only on tablet and above (≥768px) hidden md:block ── */}
       <div
-        className="absolute inset-0 hidden md:block"
+        className="absolute inset-0"
         style={{ background: "rgba(255,255,255,0.55)", zIndex: 2 }}
       />
 
       {/* ── Arrow: Previous ── */}
-      <button
+      {/* <button
         onClick={prev}
         aria-label="Previous slide"
         className="absolute left-3 md:left-6 top-1/2 -translate-y-1/2 z-20 flex items-center justify-center w-10 h-10 md:w-12 md:h-12 rounded-md focus:outline-none focus-visible:ring-2 focus-visible:ring-white"
@@ -93,10 +95,10 @@ export default function HeroSection() {
         >
           <polyline points="15 18 9 12 15 6" />
         </svg>
-      </button>
+      </button> */}
 
       {/* ── Arrow: Next ── */}
-      <button
+      {/* <button
         onClick={next}
         aria-label="Next slide"
         className="absolute right-3 md:right-6 top-1/2 -translate-y-1/2 z-20 flex items-center justify-center w-10 h-10 md:w-12 md:h-12 rounded-md focus:outline-none focus-visible:ring-2 focus-visible:ring-white"
@@ -113,10 +115,10 @@ export default function HeroSection() {
         >
           <polyline points="9 18 15 12 9 6" />
         </svg>
-      </button>
+      </button> */}
 
       {/* ── Dot indicators ── */}
-      <div className="absolute bottom-5 left-1/2 -translate-x-1/2 z-20 flex gap-2">
+      {/* <div className="absolute bottom-5 left-1/2 -translate-x-1/2 z-20 flex gap-2">
         {heroImages.map((_, i) => (
           <button
             key={i}
@@ -129,104 +131,53 @@ export default function HeroSection() {
             }}
           />
         ))}
-      </div>
+      </div> */}
 
       {/* ── Content ── */}
-      <div className="relative z-10 flex flex-col items-center justify-center gap-10 text-center px-4 pt-10 pb-10 md:pt-36 md:pb-16 min-h-[calc(100vh-72px)] md:h-[130vh]">
-        <div className="flex gap-6">
-          {/* Heading with brand-purple background pill */}
-          {/* bg-[#6B2D8B] */}
-          <div className="rounded-xl md:mx-auto max-w-[90vw] md:max-w-xl lg:max-w-4xl mb-0">
-            <h1 className="text-black text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold leading-tight">
+      <div className="relative z-10 flex flex-col items-center justify-center gap-6 md:gap-8 text-center px-4 pt-10 pb-10 md:pt-36 md:pb-16 min-h-[calc(100vh-72px)] md:min-h-screen">
+        <div className="flex flex-col gap-2 md:gap-4 mt-6 md:mt-0">
+          {/* Main Heading Text */}
+          <div className="rounded-xl md:mx-auto max-w-[90vw] md:max-w-3xl lg:max-w-4xl drop-shadow-md">
+            <h1 className="text-black text-3xl sm:text-4xl md:text-[40px] font-bold font-sans leading-tight tracking-wide drop-shadow-sm">
               Best Maternity Hospital in Chennai
             </h1>
-            <p className="text-black text-2xl sm:text-2xl md:text-2xl lg:text-3xl font-bold leading-tight">
+            <p className="text-black text-lg sm:text-xl md:text-[22px] font-semibold mt-3 md:mt-4 leading-snug drop-shadow-sm">
               26 Years of Excellence
+            </p>
+            <p className="text-black text-base sm:text-lg md:text-xl font-medium mt-1 leading-snug drop-shadow-sm opacity-95">
+              90% of Natural Birth, Delivered more than 25,000+ Babies
             </p>
           </div>
         </div>
 
         {/* Book an Appointment CTA */}
-        <div className="max-w-xl md:max-w-sm">
+        <div className="max-w-xl md:max-w-sm mt-4 md:mt-6">
           <a
             href="#book"
-            className="block w-[200px] flex items-center justify-center h-[45px] bg-[#6B2D8B] hover:bg-[#521E6E] text-white font-semibold text-base md:text-xl rounded-lg transition-colors duration-200 shadow-md hover:shadow-lg md:w-[240px]"
+            className="block w-full sm:w-[260px] flex items-center justify-center h-[50px] bg-[#9e80d8] hover:bg-[#602b75] text-white font-semibold text-base rounded-full transition-colors duration-200 shadow-md hover:shadow-lg mx-auto"
           >
             Book an Appointment
           </a>
         </div>
 
-        <div className="hidden md:flex flex-row gap-20">
-          {/* Box 1: Book Online Consult */}
-          <div className="p-8 bg-white/70 rounded-3xl shadow-lg flex flex-col items-center justify-center p-6 gap-6 hover:bg-white/80 transition-all duration-300 cursor-pointer group">
-            <div className="w-16 h-16 text-gray-800 transition-transform duration-300 group-hover:scale-110">
-              <svg
-                viewBox="0 0 24 24"
-                fill="none"
-                stroke="currentColor"
-                strokeWidth="1.2"
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                className="w-full h-full"
-              >
-                {/* Laptop silhouette */}
-                <path d="M4 16h16a2 2 0 0 0 2-2V5a2 2 0 0 0-2-2H4a2 2 0 0 0-2 2v9a2 2 0 0 0 2 2z" />
-                <path d="M2 16h20v2a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2v-2z" />
-                {/* Person */}
-                <circle cx="12" cy="9" r="2.5" />
-                <path d="M16 13.5a4 4 0 0 0-8 0" />
-                {/* Speech Bubble */}
-                <path d="M18 4l2-2v4h-2.5" strokeWidth="1" />
-                <circle cx="16" cy="3" r="0.5" fill="currentColor" />
-                <circle cx="18" cy="3" r="0.5" fill="currentColor" />
-              </svg>
-            </div>
-            <p className="text-xl font-bold text-gray-800 leading-tight">
-              Book Online
-              <br />
-              Consult
-            </p>
-          </div>
-
-          {/* Box 2: Book Hospital Visit */}
-          <div className="p-8 bg-white/70 rounded-3xl shadow-lg flex flex-col items-center justify-center p-6 gap-6 hover:bg-white/80 transition-all duration-300 cursor-pointer group">
-            <div className="w-16 h-16 text-gray-800 transition-transform duration-300 group-hover:scale-110">
-              <svg
-                viewBox="0 0 24 24"
-                fill="none"
-                stroke="currentColor"
-                strokeWidth="1.2"
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                className="w-full h-full"
-              >
-                <rect x="3" y="4" width="18" height="18" rx="2" ry="2" />
-                <line x1="16" y1="2" x2="16" y2="6" />
-                <line x1="8" y1="2" x2="8" y2="6" />
-                <line x1="3" y1="10" x2="21" y2="10" />
-                {/* Calendar grid dots */}
-                <circle cx="7" cy="14" r="0.5" fill="currentColor" />
-                <circle cx="11" cy="14" r="0.5" fill="currentColor" />
-                <circle cx="15" cy="14" r="0.5" fill="currentColor" />
-                <circle cx="7" cy="18" r="0.5" fill="currentColor" />
-                <circle cx="11" cy="18" r="0.5" fill="currentColor" />
-                {/* Checkmark in circle */}
-                <circle
-                  cx="18"
-                  cy="18"
-                  r="4"
-                  fill="white"
-                  stroke="currentColor"
-                />
-                <path d="M16 18l1.5 1.5 2.5-3.5" />
-              </svg>
-            </div>
-            <p className="text-xl font-bold text-gray-800 leading-tight">
-              Book Hospital
-              <br />
-              Visit
-            </p>
-          </div>
+        {/* Desktop Quick Actions */}
+        <div className="hidden md:flex flex-row gap-5 lg:gap-8 mt-5 md:mt-8">
+          {quickActions.map((action) => (
+            <a
+              key={action.id}
+              href={action.href}
+              className="w-36 lg:w-40 h-32 lg:h-36 bg-white/85 backdrop-blur-sm rounded-2xl shadow-sm hover:shadow-md border border-white/40 flex flex-col items-center justify-center p-4 gap-3 hover:-translate-y-1 transition-all duration-300 cursor-pointer group"
+            >
+              <div className="w-10 h-10 lg:w-11 lg:h-11 text-gray-800 group-hover:text-[#7c3996] transition-colors duration-300">
+                {icons[action.icon]}
+              </div>
+              <p className="text-[13px] lg:text-sm font-semibold text-gray-800 text-center leading-tight group-hover:text-[#7c3996] transition-colors duration-300">
+                {action.label.split(" ").map((w, i) => (
+                  <span key={i} className="block">{w}</span>
+                ))}
+              </p>
+            </a>
+          ))}
         </div>
       </div>
     </section>
