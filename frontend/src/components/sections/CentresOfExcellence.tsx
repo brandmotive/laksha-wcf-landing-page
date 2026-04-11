@@ -17,18 +17,18 @@ interface Centre {
 
 const centres: Centre[] = [
   {
-    key: "Child Care",
-    label: "Child Care",
-    image: childCareImg,
-    description:
-      "Every child possesses unique qualities, and at Rainbow Children's Hospitals, we are dedicated to nurturing their holistic development and well-being through a range of comprehensive and customized services. As India's foremost childcare multi-specialty hospital chain, our commitment to excellence is anchored by our team of trained and certified Pediatricians and support staff, available round-the-clock.",
-  },
-  {
     key: "Women Care",
     label: "Women Care",
     image: womenCareImg,
     description:
       "We understand that women's health is unique at every stage of life. Our Women Care specialists bring together expertise in obstetrics, gynaecology, fetal medicine, and wellness — delivering compassionate, evidence-based care from adolescence through menopause. You are in the hands of over 200 dedicated women's health professionals.",
+  },
+  {
+    key: "Child Care",
+    label: "Child Care",
+    image: childCareImg,
+    description:
+      "Every child possesses unique qualities, and at Rainbow Children's Hospitals, we are dedicated to nurturing their holistic development and well-being through a range of comprehensive and customized services. As India's foremost childcare multi-specialty hospital chain, our commitment to excellence is anchored by our team of trained and certified Pediatricians and support staff, available round-the-clock.",
   },
   {
     key: "Fertility Care",
@@ -41,7 +41,7 @@ const centres: Centre[] = [
 
 // ── Component ─────────────────────────────────────────────────────────────────
 export default function CentresOfExcellence() {
-  const [activeKey, setActiveKey] = useState<string>("Child Care");
+  const [activeKey, setActiveKey] = useState<string>("Women Care");
   const navigate = useNavigate();
 
   // Derive active centre data
