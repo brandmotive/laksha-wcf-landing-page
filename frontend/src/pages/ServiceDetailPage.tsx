@@ -12,51 +12,97 @@ import hospitalElectronicImg from "../assets/images/hospital_electronic_city.png
 import hospitalHennurImg from "../assets/images/hospital_hennur.png";
 import hospitalMarathaImg from "../assets/images/hospital_marathahalli.png";
 
+// Child Care Images
+import ccChildPsychology from "../assets/images/NavImages/ChildCare/Child_Psychology.jpeg";
+import ccChildrenNutrition from "../assets/images/NavImages/ChildCare/Children_Nutrition.jpeg";
+import ccGeneralPediatrics from "../assets/images/NavImages/ChildCare/General_Pediatrics.jpeg";
+import ccNeonatalICU from "../assets/images/NavImages/ChildCare/Neonatal_Intensive_Care_Unit.jpeg";
+import ccOccupationalTherapy from "../assets/images/NavImages/ChildCare/Occupational_Therapy.jpeg";
+import ccPediatricAllergy from "../assets/images/NavImages/ChildCare/Pediatric_Allergy.jpeg";
+import ccPediatricAnesthesia from "../assets/images/NavImages/ChildCare/Pediatric_Anesthesia.jpeg";
+import ccPediatricCardiology from "../assets/images/NavImages/ChildCare/Pediatric_Cardiology_Cardiac_Surgery.jpeg";
+import ccPediatricDentistry from "../assets/images/NavImages/ChildCare/Pediatric_Dentistry.jpeg";
+import ccPediatricDermatology from "../assets/images/NavImages/ChildCare/Pediatric_Dermatology.jpeg";
+import ccPediatricEndocrinology from "../assets/images/NavImages/ChildCare/Pediatric_Endocrinology.jpeg";
+import ccPediatricENT from "../assets/images/NavImages/ChildCare/Pediatric_ENT_Airway.jpeg";
+import ccPediatricInfectious from "../assets/images/NavImages/ChildCare/Pediatric_Infectious_Disease.jpeg";
+import ccPediatricOrthopedics from "../assets/images/NavImages/ChildCare/Pediatric_Orthopedics.jpeg";
+import ccPediatricPlasticSurgery from "../assets/images/NavImages/ChildCare/Pediatric_Plastic_Surgery.jpeg";
+import ccPediatricUrology from "../assets/images/NavImages/ChildCare/Pediatric_Urology.jpeg";
+import ccPhysiotherapy from "../assets/images/NavImages/ChildCare/Physiotherapy_And_Rehabilitation.jpeg";
+import ccRadiology from "../assets/images/NavImages/ChildCare/Radiology.jpeg";
+import ccSpeechTherapy from "../assets/images/NavImages/ChildCare/Speech_And_Language_Therapy.jpeg";
+
+// Women Care Images
+import wcBreastClinic from "../assets/images/NavImages/WomenCare/Breast_Clinic.jpeg";
+import wcChildBirthClasses from "../assets/images/NavImages/WomenCare/Child_Birth_Preparation_Classes.jpeg";
+import wcDiabetesInWomen from "../assets/images/NavImages/WomenCare/Diabetes_In_Women.jpeg";
+import wcFetalMedicine from "../assets/images/NavImages/WomenCare/Fetal_Medicine.jpeg";
+import wcGeneralMedicine from "../assets/images/NavImages/WomenCare/General_Medicine.jpeg";
+import wcGynecologicalEndo from "../assets/images/NavImages/WomenCare/Gynecological_Endoscopic_Surgeries.jpeg";
+import wcHighRiskPregnancy from "../assets/images/NavImages/WomenCare/High-Risk_Pregnancy.jpeg";
+import wcLactation from "../assets/images/NavImages/WomenCare/Lactation.jpeg";
+import wcLaparoscopicSurgeries from "../assets/images/NavImages/WomenCare/Laparoscopic_Surgeries.jpeg";
+import wcMenopausePerimenopause from "../assets/images/NavImages/WomenCare/Menopause_And_Perimenopause.jpeg";
+import wcMinimalInvasive from "../assets/images/NavImages/WomenCare/Minimal_Invasive_Suregeries.jpeg";
+import wcObstetricsGynecology from "../assets/images/NavImages/WomenCare/Obstetrics_And_Gynecology.png";
+import wcPainlessDelivery from "../assets/images/NavImages/WomenCare/Painless_Delivery_Labor.jpeg";
+import wcPrePregnancy from "../assets/images/NavImages/WomenCare/Pre-Pregnancy_Health_Checkup.jpeg";
+import wcPregnancyDelivery from "../assets/images/NavImages/WomenCare/Pregnancy_And_Delivery.jpeg";
+import wcUrogynecology from "../assets/images/NavImages/WomenCare/Urogynecology.jpeg";
+import wcVBAC from "../assets/images/NavImages/WomenCare/Vaginal_Birth_After_Cesarean.jpeg";
+import wcWellWomen from "../assets/images/NavImages/WomenCare/Well_Women_Check_Up.jpeg";
+import wcWomenNutrition from "../assets/images/NavImages/WomenCare/Women_Nutrition.jpeg";
+import wcWomenPsychiatry from "../assets/images/NavImages/WomenCare/Women_Psychiatry.jpeg";
+import wcWomensPhysiotherapy from "../assets/images/NavImages/WomenCare/Womens_Physiotherapy.jpeg";
+
 // ── Hero background image map (slug → image) ──────────────────────────────────
 const heroBgMap: Record<string, string> = {
   // Child Care
-  "child-psychology": childPsychologyImg,
-  "childrens-nutrition": motherChildrenImg,
-  "general-pediatrics": motherChildrenImg,
-  "neonatal-intensive-care-unit": hospitalElectronicImg,
-  "occupational-therapy": childPsychologyImg,
-  "pediatric-allergy": childPsychologyImg,
-  "pediatric-anesthesia": hospitalElectronicImg,
-  "pediatric-cardiology-cardiac-surgery": hospitalElectronicImg,
-  "pediatric-dentistry": childPsychologyImg,
-  "pediatric-dermatology": childPsychologyImg,
-  "pediatric-endocrinology": childPsychologyImg,
-  "pediatric-ent-airway": childPsychologyImg,
-  "pediatric-infectious-disease": hospitalElectronicImg,
-  "pediatric-orthopedics": hospitalElectronicImg,
-  "pediatric-plastic-surgery": hospitalElectronicImg,
-  "pediatric-urology": hospitalElectronicImg,
-  "physiotherapy-rehabilitation": motherChildrenImg,
-  "radiology": hospitalElectronicImg,
-  "speech-language-therapy": childPsychologyImg,
+  "child-psychology": ccChildPsychology,
+  "childrens-nutrition": ccChildrenNutrition,
+  "general-pediatrics": ccGeneralPediatrics,
+  "neonatal-intensive-care-unit": ccNeonatalICU,
+  "occupational-therapy": ccOccupationalTherapy,
+  "pediatric-allergy": ccPediatricAllergy,
+  "pediatric-anesthesia": ccPediatricAnesthesia,
+  "pediatric-cardiology-cardiac-surgery": ccPediatricCardiology,
+  "pediatric-dentistry": ccPediatricDentistry,
+  "pediatric-dermatology": ccPediatricDermatology,
+  "pediatric-endocrinology": ccPediatricEndocrinology,
+  "pediatric-ent-airway": ccPediatricENT,
+  "pediatric-infectious-disease": ccPediatricInfectious,
+  "pediatric-orthopedics": ccPediatricOrthopedics,
+  "pediatric-plastic-surgery": ccPediatricPlasticSurgery,
+  "pediatric-urology": ccPediatricUrology,
+  "physiotherapy-rehabilitation": ccPhysiotherapy,
+  "radiology": ccRadiology,
+  "speech-language-therapy": ccSpeechTherapy,
+  
   // Women Care
-  "breast-care-clinic": motherChildrenImg,
-  "breastfeeding-support": motherChildrenImg,
-  "childbirth-preparation-classes": motherChildrenImg,
-  "diabetes-in-women": hospitalElectronicImg,
-  "fetal-medicine": motherChildrenImg,
-  "general-medicine": hospitalElectronicImg,
-  "gynecological-endoscopic-surgeries": hospitalElectronicImg,
-  "high-risk-pregnancy": motherChildrenImg,
-  "lactation": motherChildrenImg,
-  "laparoscopic-surgeries": hospitalElectronicImg,
-  "menopause-perimenopause": motherChildrenImg,
-  "minimally-invasive-surgery": hospitalElectronicImg,
-  "obstetrics-gynecology": motherChildrenImg,
-  "painless-delivery-labor": motherChildrenImg,
-  "pre-pregnancy-health-checkup": motherChildrenImg,
-  "pregnancy-delivery": motherChildrenImg,
-  "urogynecology": hospitalElectronicImg,
-  "vaginal-birth-after-cesarean": motherChildrenImg,
-  "well-women-check-up": motherChildrenImg,
-  "women-physiotherapy": motherChildrenImg,
-  "women-psychiatry": motherChildrenImg,
-  "womens-nutrition": motherChildrenImg,
+  "breast-care-clinic": wcBreastClinic,
+  "breastfeeding-support": wcLactation,
+  "childbirth-preparation-classes": wcChildBirthClasses,
+  "diabetes-in-women": wcDiabetesInWomen,
+  "fetal-medicine": wcFetalMedicine,
+  "general-medicine": wcGeneralMedicine,
+  "gynecological-endoscopic-surgeries": wcGynecologicalEndo,
+  "high-risk-pregnancy": wcHighRiskPregnancy,
+  "lactation": wcLactation,
+  "laparoscopic-surgeries": wcLaparoscopicSurgeries,
+  "menopause-perimenopause": wcMenopausePerimenopause,
+  "minimally-invasive-surgery": wcMinimalInvasive,
+  "obstetrics-gynecology": wcObstetricsGynecology,
+  "painless-delivery-labor": wcPainlessDelivery,
+  "pre-pregnancy-health-checkup": wcPrePregnancy,
+  "pregnancy-delivery": wcPregnancyDelivery,
+  "urogynecology": wcUrogynecology,
+  "vaginal-birth-after-cesarean": wcVBAC,
+  "well-women-check-up": wcWellWomen,
+  "women-physiotherapy": wcWomensPhysiotherapy,
+  "women-psychiatry": wcWomenPsychiatry,
+  "womens-nutrition": wcWomenNutrition,
+  
   // Fertility Care
   "ivf-in-vitro-fertilisation": motherChildrenImg,
   "iui-intrauterine-insemination": motherChildrenImg,
@@ -77,16 +123,66 @@ const heroBgMap: Record<string, string> = {
 
 // ── Section image map — shown in the About section LEFT column ────────────────
 const sectionImageMap: Record<string, string> = {
-  "child-psychology": childPsychologyImg,
-  "childrens-nutrition": motherChildrenImg,
-  "neonatal-intensive-care-unit": hospitalElectronicImg,
-  "breast-care-clinic": motherChildrenImg,
-  "breastfeeding-support": motherChildrenImg,
-  "lactation": motherChildrenImg,
-  "high-risk-pregnancy": motherChildrenImg,
-  "obstetrics-gynecology": motherChildrenImg,
-  "pregnancy-delivery": motherChildrenImg,
+  // Child Care
+  "child-psychology": ccChildPsychology,
+  "childrens-nutrition": ccChildrenNutrition,
+  "general-pediatrics": ccGeneralPediatrics,
+  "neonatal-intensive-care-unit": ccNeonatalICU,
+  "occupational-therapy": ccOccupationalTherapy,
+  "pediatric-allergy": ccPediatricAllergy,
+  "pediatric-anesthesia": ccPediatricAnesthesia,
+  "pediatric-cardiology-cardiac-surgery": ccPediatricCardiology,
+  "pediatric-dentistry": ccPediatricDentistry,
+  "pediatric-dermatology": ccPediatricDermatology,
+  "pediatric-endocrinology": ccPediatricEndocrinology,
+  "pediatric-ent-airway": ccPediatricENT,
+  "pediatric-infectious-disease": ccPediatricInfectious,
+  "pediatric-orthopedics": ccPediatricOrthopedics,
+  "pediatric-plastic-surgery": ccPediatricPlasticSurgery,
+  "pediatric-urology": ccPediatricUrology,
+  "physiotherapy-rehabilitation": ccPhysiotherapy,
+  "radiology": ccRadiology,
+  "speech-language-therapy": ccSpeechTherapy,
+  
+  // Women Care
+  "breast-care-clinic": wcBreastClinic,
+  "breastfeeding-support": wcLactation,
+  "childbirth-preparation-classes": wcChildBirthClasses,
+  "diabetes-in-women": wcDiabetesInWomen,
+  "fetal-medicine": wcFetalMedicine,
+  "general-medicine": wcGeneralMedicine,
+  "gynecological-endoscopic-surgeries": wcGynecologicalEndo,
+  "high-risk-pregnancy": wcHighRiskPregnancy,
+  "lactation": wcLactation,
+  "laparoscopic-surgeries": wcLaparoscopicSurgeries,
+  "menopause-perimenopause": wcMenopausePerimenopause,
+  "minimally-invasive-surgery": wcMinimalInvasive,
+  "obstetrics-gynecology": wcObstetricsGynecology,
+  "painless-delivery-labor": wcPainlessDelivery,
+  "pre-pregnancy-health-checkup": wcPrePregnancy,
+  "pregnancy-delivery": wcPregnancyDelivery,
+  "urogynecology": wcUrogynecology,
+  "vaginal-birth-after-cesarean": wcVBAC,
+  "well-women-check-up": wcWellWomen,
+  "women-physiotherapy": wcWomensPhysiotherapy,
+  "women-psychiatry": wcWomenPsychiatry,
+  "womens-nutrition": wcWomenNutrition,
+  
+  // Fertility Care
+  "ivf-in-vitro-fertilisation": motherChildrenImg,
+  "iui-intrauterine-insemination": motherChildrenImg,
+  "icsi-intracytoplasmic-sperm-injection": motherChildrenImg,
+  "egg-freezing": motherChildrenImg,
+  "embryo-freezing": motherChildrenImg,
+  "fertility-assessment": motherChildrenImg,
+  "male-infertility-treatment": hospitalElectronicImg,
+  "recurrent-pregnancy-loss": motherChildrenImg,
+  "surrogacy": motherChildrenImg,
+
+  // Hospitals
   "anna-nagar-chennai": hospitalElectronicImg,
+  "bannerghatta-road-bengaluru": hospitalHennurImg,
+  "banjara-hills-hyderabad": hospitalElectronicImg,
   "hebbal-bengaluru": hospitalHennurImg,
   "marathahalli-bengaluru": hospitalMarathaImg,
 };

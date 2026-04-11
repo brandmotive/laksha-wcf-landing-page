@@ -1,23 +1,25 @@
 import React from 'react';
-import hospitalMarathahalli from '../../assets/images/hospital_marathahalli.png?url';
-import hospitalElectronicCity from '../../assets/images/hospital_electronic_city.png?url';
-import hospitalHennur from '../../assets/images/hospital_hennur.png?url';
+import wcfVillivakkamImg from '../../assets/images/Hospitals/Wcf_Villivakam_Enhanced.png';
+import lakshaHospitalImg from '../../assets/images/Hospitals/Laksha_Hospital.png';
+import wcfRoyapettahImg from '../../assets/images/Hospitals/Wcf_Royapettah.png';
+
+
 
 const hospitals = [
   {
-    name: 'Marathahalli',
-    image: hospitalMarathahalli,
-    url: '#marathahalli',
+    name: 'Wcf Villivakkam',
+    image: wcfVillivakkamImg,
+    url: '#wcf-villivakkam',
   },
   {
-    name: 'Electronic City',
-    image: hospitalElectronicCity,
-    url: '#electronic-city',
+    name: 'Wcf Kolathur',
+    image: wcfRoyapettahImg,
+    url: '#wcf-kolathur',
   },
   {
-    name: 'Hennur',
-    image: hospitalHennur,
-    url: '#hennur',
+    name: 'Laksha WCF Royapettah',
+    image: lakshaHospitalImg,
+    url: '#laksha-wcf-royapettah',
   },
 ];
 
