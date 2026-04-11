@@ -12,6 +12,7 @@ import FadeIn from "./components/common/FadeIn";
 import PackagesSection from "./components/sections/PackagesSection";
 import ServiceDetailPage from "./pages/ServiceDetailPage";
 import PackageDetailPage from "./pages/PackageDetailPage";
+import Footer from "./components/layout/Footer";
 
 // ── Home Page ─────────────────────────────────────────────────────────────────
 function HomePage() {
@@ -61,6 +62,7 @@ function App() {
         {/* Catch-all → home */}
         <Route path="*" element={<HomePage />} />
       </Routes>
+      <Footer />
     </BrowserRouter>
   );
 }

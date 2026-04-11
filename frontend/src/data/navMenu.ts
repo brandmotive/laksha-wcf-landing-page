@@ -84,11 +84,9 @@ export const navMenu: NavItem[] = [
   {
     label: "Our Hospitals",
     children: [
-      { label: "Anna Nagar, Chennai", slug: "anna-nagar-chennai", heroTagline: "World-class care at our Anna Nagar, Chennai hospital." },
-      { label: "Bannerghatta Road, Bengaluru", slug: "bannerghatta-road-bengaluru", heroTagline: "Excellence in healthcare at Bannerghatta Road, Bengaluru." },
-      { label: "Banjara Hills, Hyderabad", slug: "banjara-hills-hyderabad", heroTagline: "Trusted care at our Banjara Hills, Hyderabad hospital." },
-      { label: "Hebbal, Bengaluru", slug: "hebbal-bengaluru", heroTagline: "Advanced medical services at Hebbal, Bengaluru." },
-      { label: "Marathahalli, Bengaluru", slug: "marathahalli-bengaluru", heroTagline: "Comprehensive healthcare at Marathahalli, Bengaluru." },
+      { label: "Wcf Villivakkam", slug: "wcf-villivakkam", heroTagline: "World-class care at the Chennai hospital." },
+      { label: "Wcf Kolathur", slug: "wcf-kolathur", heroTagline: "Excellence in healthcare." },
+      { label: "Laksha WCF Royapettah", slug: "laksha-wcf-royapettah", heroTagline: "Trusted care hospital." },
     ],
   },
 ];
