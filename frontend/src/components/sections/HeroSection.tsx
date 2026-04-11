@@ -1,12 +1,47 @@
-import heroVideo from "../../assets/videos/landingPageVideo.mp4";
-// import sampleVideo from "../../assets/videos/secondLandingPage.mp4";
+import { useState, useEffect, useCallback } from "react";
+import heroOne from "../../assets/images/heroSection/heroOne.jpg.jpeg";
+import heroTwo from "../../assets/images/heroSection/heroTwo.jpg.jpeg";
+import heroThree from "../../assets/images/heroSection/heroThree.jpg.jpeg";
+import heroFour from "../../assets/images/heroSection/heroFour.jpg.jpeg";
+import heroFive from "../../assets/images/heroSection/heroFive.jpg.jpeg";
+
+const heroImages = [heroOne, heroTwo, heroThree, heroFour, heroFive];
 
 export default function HeroSection() {
+  const [current, setCurrent] = useState(0);
+  const [animating, setAnimating] = useState(false);
+
+  const goTo = useCallback(
+    (next: number) => {
+      if (animating) return;
+      setAnimating(true);
+      setTimeout(() => {
+        setCurrent(next);
+        setAnimating(false);
+      }, 600);
+    },
+    [animating]
+  );
+
+  const prev = () => goTo((current - 1 + heroImages.length) % heroImages.length);
+  const next = useCallback(
+    () => goTo((current + 1) % heroImages.length),
+    [current, goTo]
+  );
+
+  // Auto-advance every 4 seconds
+  useEffect(() => {
+    const id = setInterval(next, 4000);
+    return () => clearInterval(id);
+  }, [next]);
+
   return (
     // md+: full 100vh — transparent absolute navbar floats on top
     // mobile: subtract ~72px for the always-visible white navbar
     <section className="relative w-full overflow-hidden min-h-[calc(100vh-72px)] md:min-h-screen">
-      {/* ── Background video (all screens) ── */}
+      {/*
+      
+        
       <video
         autoPlay
         muted
@@ -17,22 +52,88 @@ export default function HeroSection() {
       >
         <source src={heroVideo} type="video/mp4" />
       </video>
+      */}
+      {/* ── Carousel images ── */}
+      {heroImages.map((src, index) => (
+        <img
+          key={index}
+          src={src}
+          alt={`Hero slide ${index + 1}`}
+          aria-hidden={index !== current}
+          className="absolute inset-0 w-full h-full object-cover"
+          style={{
+            opacity: index === current ? (animating ? 0 : 1) : 0,
+            transition: "opacity 0.6s ease-in-out",
+            zIndex: index === current ? 1 : 0,
+          }}
+        />
+      ))}
 
       {/* ── White overlay — only on tablet and above (≥768px) ── */}
       <div
         className="absolute inset-0 hidden md:block"
-        style={{ background: "rgba(255,255,255,0.55)" }}
+        style={{ background: "rgba(255,255,255,0.55)", zIndex: 2 }}
       />
+
+      {/* ── Arrow: Previous ── */}
+      <button
+        onClick={prev}
+        aria-label="Previous slide"
+        className="absolute left-3 md:left-6 top-1/2 -translate-y-1/2 z-20 flex items-center justify-center w-10 h-10 md:w-12 md:h-12 rounded-md focus:outline-none focus-visible:ring-2 focus-visible:ring-white"
+        style={{ background: "rgba(0,0,0,0.45)" }}
+      >
+        <svg
+          viewBox="0 0 24 24"
+          fill="none"
+          stroke="white"
+          strokeWidth="2.5"
+          strokeLinecap="round"
+          strokeLinejoin="round"
+          className="w-5 h-5 md:w-6 md:h-6"
+        >
+          <polyline points="15 18 9 12 15 6" />
+        </svg>
+      </button>
+
+      {/* ── Arrow: Next ── */}
+      <button
+        onClick={next}
+        aria-label="Next slide"
+        className="absolute right-3 md:right-6 top-1/2 -translate-y-1/2 z-20 flex items-center justify-center w-10 h-10 md:w-12 md:h-12 rounded-md focus:outline-none focus-visible:ring-2 focus-visible:ring-white"
+        style={{ background: "rgba(0,0,0,0.45)" }}
+      >
+        <svg
+          viewBox="0 0 24 24"
+          fill="none"
+          stroke="white"
+          strokeWidth="2.5"
+          strokeLinecap="round"
+          strokeLinejoin="round"
+          className="w-5 h-5 md:w-6 md:h-6"
+        >
+          <polyline points="9 18 15 12 9 6" />
+        </svg>
+      </button>
+
+      {/* ── Dot indicators ── */}
+      <div className="absolute bottom-5 left-1/2 -translate-x-1/2 z-20 flex gap-2">
+        {heroImages.map((_, i) => (
+          <button
+            key={i}
+            aria-label={`Go to slide ${i + 1}`}
+            onClick={() => goTo(i)}
+            className="w-2.5 h-2.5 rounded-full transition-all duration-300 focus:outline-none"
+            style={{
+              background: i === current ? "#6B2D8B" : "rgba(255,255,255,0.65)",
+              transform: i === current ? "scale(1.3)" : "scale(1)",
+            }}
+          />
+        ))}
+      </div>
 
       {/* ── Content ── */}
       <div className="relative z-10 flex flex-col items-center justify-center gap-10 text-center px-4 pt-10 pb-10 md:pt-36 md:pb-16 min-h-[calc(100vh-72px)] md:h-[130vh]">
         <div className="flex gap-6">
-          {/* Pink decorative line — above heading */}
-          {/* <div className="flex items-center justify-center w-[200px] max-w-xs md:max-w-md lg:max-w-lg mb-3">
-            <div className="flex-1 h-px bg-[#E91E8C]" />
-            <div className="flex-1 h-px bg-[#E91E8C]" />
-          </div> */}
-
           {/* Heading with brand-purple background pill */}
           {/* bg-[#6B2D8B] */}
           <div className="rounded-xl md:mx-auto max-w-[90vw] md:max-w-xl lg:max-w-4xl mb-0">
@@ -43,12 +144,6 @@ export default function HeroSection() {
               26 Years of Excellence
             </p>
           </div>
-
-          {/* Pink decorative line — below heading */}
-          {/* <div className="flex items-center justify-center w-[200px] max-w-xs md:max-w-md lg:max-w-lg mt-3">
-            <div className="flex-1 h-px bg-[#E91E8C]" />
-            <div className="flex-1 h-px bg-[#E91E8C]" />
-          </div> */}
         </div>
 
         {/* Book an Appointment CTA */}

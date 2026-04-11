@@ -4,6 +4,7 @@ import EnquireNow from "./components/layout/EnquireNow";
 import HeroSection from "./components/sections/HeroSection";
 import QuickActions from "./components/sections/QuickActions";
 import AboutUs from "./components/sections/AboutUs";
+import CentresOfExcellence from "./components/sections/CentresOfExcellence";
 import LeadingHospitals from "./components/sections/LeadingHospitals";
 import Blogs from "./components/sections/Blogs";
 import FAQs from "./components/sections/FAQs";
@@ -34,6 +35,7 @@ function HomePage() {
 
         <FadeIn delay={100}><PackagesSection /></FadeIn>
         <FadeIn delay={100}><AboutUs /></FadeIn>
+        <FadeIn delay={100}><CentresOfExcellence /></FadeIn>
         <FadeIn delay={100}><LeadingHospitals /></FadeIn>
         <FadeIn delay={100}><Blogs /></FadeIn>
         <FadeIn delay={100}><FAQs /></FadeIn>

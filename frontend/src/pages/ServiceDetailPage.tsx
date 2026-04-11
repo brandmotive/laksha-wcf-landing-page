@@ -57,6 +57,16 @@ const heroBgMap: Record<string, string> = {
   "women-physiotherapy": motherChildrenImg,
   "women-psychiatry": motherChildrenImg,
   "womens-nutrition": motherChildrenImg,
+  // Fertility Care
+  "ivf-in-vitro-fertilisation": motherChildrenImg,
+  "iui-intrauterine-insemination": motherChildrenImg,
+  "icsi-intracytoplasmic-sperm-injection": motherChildrenImg,
+  "egg-freezing": motherChildrenImg,
+  "embryo-freezing": motherChildrenImg,
+  "fertility-assessment": motherChildrenImg,
+  "male-infertility-treatment": hospitalElectronicImg,
+  "recurrent-pregnancy-loss": motherChildrenImg,
+  "surrogacy": motherChildrenImg,
   // Hospitals
   "anna-nagar-chennai": hospitalElectronicImg,
   "bannerghatta-road-bengaluru": hospitalHennurImg,
