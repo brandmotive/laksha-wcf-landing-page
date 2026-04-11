@@ -154,7 +154,7 @@ export default function HeroSection() {
         <div className="max-w-xl md:max-w-sm mt-4 md:mt-6">
           <a
             href="#book"
-            className="block w-full p-4 sm:flex items-center justify-center h-[50px] bg-[#9e80d8] hover:bg-[#602b75] text-white font-semibold text-base rounded-full transition-colors duration-200 shadow-md hover:shadow-lg mx-auto"
+            className="block w-full p-4 sm:flex items-center justify-center bg-[#9e80d8] hover:bg-[#602b75] text-white font-semibold text-base rounded-full transition-colors duration-200 shadow-md hover:shadow-lg mx-auto"
           >
             Book an Appointment
           </a>
