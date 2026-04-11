@@ -25,7 +25,7 @@ export default function HeroSection() {
     [animating]
   );
 
-  const prev = () => goTo((current - 1 + heroImages.length) % heroImages.length);
+  // const prev = () => goTo((current - 1 + heroImages.length) % heroImages.length);
   const next = useCallback(
     () => goTo((current + 1) % heroImages.length),
     [current, goTo]
