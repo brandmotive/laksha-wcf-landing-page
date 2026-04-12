@@ -107,7 +107,22 @@ export default function MobileDrawer({ isOpen, onClose }: MobileDrawerProps) {
                   <Link
                     key={item.label}
                     to={getTopLevelHref(item)}
-                    onClick={onClose}
+                    onClick={(e) => {
+                      const href = getTopLevelHref(item);
+                      if (href.startsWith("/#") && window.location.pathname === "/") {
+                        e.preventDefault();
+                        onClose();
+                        const id = href.replace("/#", "");
+                        setTimeout(() => {
+                          const element = document.getElementById(id);
+                          if (element) {
+                            element.scrollIntoView({ behavior: "smooth" });
+                          }
+                        }, 300); // Wait for drawer to close
+                      } else {
+                        onClose();
+                      }
+                    }}
                     className="w-full flex items-center justify-between px-6 py-4 text-[15px] font-medium text-gray-800 hover:bg-gray-50 border-b border-gray-100 transition-colors duration-150"
                   >
                     {item.label}
