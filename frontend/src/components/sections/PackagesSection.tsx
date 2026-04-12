@@ -2,74 +2,7 @@ import { useState, useEffect } from "react";
 import { createPortal } from "react-dom";
 import { useNavigate } from "react-router-dom";
 
-interface PackageData {
-  id: string;
-  title: string;
-  price: string;
-  descriptionHeading: string;
-  points: string[];
-  exclusions: string[];
-}
-
-const packages: PackageData[] = [
-  {
-    id: "pkg-1",
-    title: "Inaugural Delivery Offer (Green Package)",
-    price: "₹29,999",
-    descriptionHeading: "Applicable for pregnancies above 37 weeks",
-    exclusions: [
-      "Medicines: ₹10,000 (excluded)",
-      "Baby charges: ₹5,000 (excluded)"
-    ],
-    points: [
-      "Medicines: ₹10,000 (excluded)",
-      "Baby charges: ₹5,000 (excluded)",
-      // "Complete antenatal care (conception to delivery)",
-      // "Free Blood Tests & ultrasounds",
-      // "Free CTG monitoring",
-      // "Free obstetric consultations",
-      // "IP hospitalization covered",
-      // "45 days postnatal free consultations"
-    ]
-  },
-  {
-    id: "pkg-2",
-    title: "Single Room (Purple Package)",
-    price: "₹59,999",
-    descriptionHeading: "Facilities include:",
-    exclusions: [
-      "Medicines: ₹10,000 (excluded)",
-      "Baby charges: ₹5,000 (excluded)"
-    ],
-    points: [
-      "Complete antenatal care (conception to delivery)",
-      "Free Blood Tests & ultrasounds",
-      "Free CTG monitoring",
-      "Free obstetric consultations",
-      "IP hospitalization covered",
-      "45 days postnatal free consultations"
-    ]
-  },
-  {
-    id: "pkg-3",
-    title: "Suite Room Pink Package",
-    price: "₹99,999",
-    descriptionHeading: "Facilities include:",
-    exclusions: [
-      "Medicines: ₹10,000 (excluded)"
-    ],
-    points: [
-      "Complete antenatal care (conception to delivery)",
-      "Free Blood tests & ultrasounds",
-      "Free CTG monitoring",
-      "Free obstetric consultations",
-      "IP hospitalization covered",
-      "45 days postnatal free consultations",
-      "Baby charges included",
-      "Painless delivery included"
-    ]
-  }
-];
+import { packages, type PackageData } from "../../data/packages";
 
 const PackagesSection = () => {
   const navigate = useNavigate();
@@ -233,7 +166,17 @@ const PackagesSection = () => {
             <div
               key={pkg.id}
               onClick={() => openPopup(pkg)}
-              className="group flex flex-col bg-white rounded-2xl md:rounded-3xl shadow-sm hover:shadow-2xl border border-gray-100 transition-all duration-300 overflow-hidden cursor-pointer h-[380px] md:h-[420px] p-6 hover:-translate-y-2 relative"
+              className="group flex flex-col bg-white rounded-2xl md:rounded-3xl transition-all duration-300 overflow-hidden cursor-pointer h-[380px] md:h-[420px] p-6 hover:-translate-y-2 relative"
+              style={{
+                border: `1.5px solid ${pkg.color.border}`,
+                boxShadow: pkg.color.shadow,
+              }}
+              onMouseEnter={(e) => {
+                (e.currentTarget as HTMLDivElement).style.boxShadow = pkg.color.shadowHover;
+              }}
+              onMouseLeave={(e) => {
+                (e.currentTarget as HTMLDivElement).style.boxShadow = pkg.color.shadow;
+              }}
             >
               <div className="flex flex-col h-full">
                 {/* Title and Icon */}
