@@ -3,12 +3,13 @@ import { packages } from "../../data/packages";
 export default function EnquireNow() {
   const scrollToSection = (id: string) => {
     if (window.location.pathname === "/") {
-      const element = document.getElementById("packages"); // Scroll to main packages section
+      // Try to scroll to specific package or fallback to main packages section
+      const element = document.getElementById(id) || document.getElementById("packages");
       if (element) {
         element.scrollIntoView({ behavior: "smooth" });
       }
     } else {
-      window.location.href = "/#packages";
+      window.location.href = `/#${id}`;
     }
   };
 
