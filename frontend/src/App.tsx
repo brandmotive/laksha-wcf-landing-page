@@ -34,11 +34,11 @@ function HomePage() {
           </FadeIn>
         </div>
 
-        <FadeIn delay={100}><PackagesSection /></FadeIn>
-        <FadeIn delay={100}><AboutUs /></FadeIn>
+        <div id="packages"><FadeIn delay={100}><PackagesSection /></FadeIn></div>
+        <div id="about"><FadeIn delay={100}><AboutUs /></FadeIn></div>
         <FadeIn delay={100}><CentresOfExcellence /></FadeIn>
         <FadeIn delay={100}><LeadingHospitals /></FadeIn>
-        <FadeIn delay={100}><Blogs /></FadeIn>
+        <div id="blogs"><FadeIn delay={100}><Blogs /></FadeIn></div>
         <FadeIn delay={100}><FAQs /></FadeIn>
       </main>
     </>

@@ -1,24 +1,24 @@
 import React from 'react';
-import wcfVillivakkamImg from '../../assets/images/Hospitals/Wcf_Villivakam_Enhanced.png';
-import lakshaHospitalImg from '../../assets/images/Hospitals/Laksha_Hospital.png';
-import wcfRoyapettahImg from '../../assets/images/Hospitals/Wcf_Royapettah.png';
+import WCFVillivakkamImg from '../../assets/images/Hospitals/Wcf_Villivakam_Enhanced.png';
+import LakshaHospitalImg from '../../assets/images/Hospitals/Laksha_Hospital.png';
+import WCFRoyapettahImg from '../../assets/images/Hospitals/Wcf_Royapettah.png';
 
 
 
 const hospitals = [
   {
-    name: 'Wcf Villivakkam',
-    image: wcfVillivakkamImg,
+    name: 'WCF Villivakkam',
+    image: WCFVillivakkamImg,
     url: '#wcf-villivakkam',
   },
   {
-    name: 'Wcf Kolathur',
-    image: wcfRoyapettahImg,
+    name: 'WCF Kolathur',
+    image: WCFRoyapettahImg,
     url: '#wcf-kolathur',
   },
   {
     name: 'Laksha WCF Royapettah',
-    image: lakshaHospitalImg,
+    image: LakshaHospitalImg,
     url: '#laksha-wcf-royapettah',
   },
 ];
