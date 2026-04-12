@@ -165,6 +165,7 @@ const PackagesSection = () => {
           {packages.map((pkg) => (
             <div
               key={pkg.id}
+              id={pkg.id}
               onClick={() => openPopup(pkg)}
               className="group flex flex-col bg-white rounded-2xl md:rounded-3xl transition-all duration-300 overflow-hidden cursor-pointer h-[380px] md:h-[420px] p-6 hover:-translate-y-2 relative"
               style={{
