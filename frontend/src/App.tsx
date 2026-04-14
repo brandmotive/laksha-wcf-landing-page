@@ -12,6 +12,7 @@ import FadeIn from "./components/common/FadeIn";
 import PackagesSection from "./components/sections/PackagesSection";
 import ServiceDetailPage from "./pages/ServiceDetailPage";
 import PackageDetailPage from "./pages/PackageDetailPage";
+import AboutUsPage from "./pages/AboutUsPage";
 import Footer from "./components/layout/Footer";
 
 // ── Home Page ─────────────────────────────────────────────────────────────────
@@ -45,23 +46,35 @@ function HomePage() {
   );
 }
 
+import { useHashScroll } from "./hooks/useHashScroll";
+
 // ── App with Router ───────────────────────────────────────────────────────────
+function AppContent() {
+  useHashScroll();
+  return (
+    <Routes>
+      {/* Home */}
+      <Route path="/" element={<HomePage />} />
+
+      {/* Service detail — reusable for all sub-items */}
+      <Route path="/service/:slug" element={<ServiceDetailPage />} />
+
+      {/* Package detail pages */}
+      <Route path="/package/:packageId" element={<PackageDetailPage />} />
+
+      {/* About Us dedicated page */}
+      <Route path="/about" element={<AboutUsPage />} />
+
+      {/* Catch-all → home */}
+      <Route path="*" element={<HomePage />} />
+    </Routes>
+  );
+}
+
 function App() {
   return (
     <BrowserRouter>
-      <Routes>
-        {/* Home */}
-        <Route path="/" element={<HomePage />} />
-
-        {/* Service detail — reusable for all sub-items */}
-        <Route path="/service/:slug" element={<ServiceDetailPage />} />
-
-        {/* Package detail pages */}
-        <Route path="/package/:packageId" element={<PackageDetailPage />} />
-
-        {/* Catch-all → home */}
-        <Route path="*" element={<HomePage />} />
-      </Routes>
+      <AppContent />
       <Footer />
     </BrowserRouter>
   );

@@ -47,7 +47,8 @@ export default function MobileDrawer({ isOpen, onClose }: MobileDrawerProps) {
 
   const getTopLevelHref = (item: NavItem): string => {
     if (!item.slug) return "/";
-    if (["packages", "about", "blogs"].includes(item.slug)) return `/#${item.slug}`;
+    if (["packages", "blogs"].includes(item.slug)) return `/#${item.slug}`;
+    if (item.slug === "about") return "/about";
     return `/${item.slug}`;
   };
 
@@ -109,16 +110,21 @@ export default function MobileDrawer({ isOpen, onClose }: MobileDrawerProps) {
                     to={getTopLevelHref(item)}
                     onClick={(e) => {
                       const href = getTopLevelHref(item);
-                      if (href.startsWith("/#") && window.location.pathname === "/") {
-                        e.preventDefault();
-                        onClose();
-                        const id = href.replace("/#", "");
-                        setTimeout(() => {
-                          const element = document.getElementById(id);
-                          if (element) {
-                            element.scrollIntoView({ behavior: "smooth" });
-                          }
-                        }, 300); // Wait for drawer to close
+                      if (href.startsWith("/#")) {
+                        if (window.location.pathname === "/") {
+                          e.preventDefault();
+                          onClose();
+                          const id = href.replace("/#", "");
+                          setTimeout(() => {
+                            const element = document.getElementById(id);
+                            if (element) {
+                              element.scrollIntoView({ behavior: "smooth" });
+                            }
+                          }, 300);
+                        } else {
+                          onClose();
+                          // navigate is handled by Link naturally via 'to', but we want the hook to pick it up
+                        }
                       } else {
                         onClose();
                       }
