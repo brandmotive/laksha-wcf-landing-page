@@ -1,6 +1,6 @@
 import React from 'react';
 import WCFVillivakkamImg from '../../assets/images/Hospitals/Wcf_Villivakam_Enhanced.png';
-import LakshaHospitalImg from '../../assets/images/Hospitals/Laksha_Hospital.png';
+import LakshaHospitalImg from '../../assets/images/Hospitals/Laksha_Hospitals.png.jpeg';
 import WCFKolathurImg from '../../assets/images/Hospitals/WCF_Kolathur.jpeg';
 
 
