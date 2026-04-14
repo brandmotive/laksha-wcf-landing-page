@@ -1,6 +1,8 @@
 import React from 'react';
 // import motherChildImage from '../../assets/images/mother_children_image.png?url';
-import AboutUsImage from '../../assets/images/AboutUsImage.png'
+// import AboutUsImage from '../../assets/images/AboutUsImage.png'
+import AboutUsImage from '../../assets/images/AboutUsImageOne.png'
+
 
 const AboutUs: React.FC = () => {
   return (
