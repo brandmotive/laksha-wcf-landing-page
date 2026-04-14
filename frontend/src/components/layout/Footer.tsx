@@ -77,7 +77,7 @@ export default function Footer() {
             <h3 className="text-[#6B2D8B] font-bold text-lg mb-4 border-b border-[#6B2D8B]/10 pb-2">Corporate</h3>
             <ul className="flex flex-col gap-y-3">
               <li>
-                <Link to="/#about" className="text-gray-700 hover:text-[#7c3996] text-[13px] sm:text-sm font-medium transition-colors inline-block">
+                <Link to="/about" className="text-gray-700 hover:text-[#7c3996] text-[13px] sm:text-sm font-medium transition-colors inline-block">
                   About Us
                 </Link>
               </li>
@@ -90,6 +90,18 @@ export default function Footer() {
                 <Link to="/#blogs" className="text-gray-700 hover:text-[#7c3996] text-[13px] sm:text-sm font-medium transition-colors inline-block">
                   Blogs
                 </Link>
+              </li>
+              <li className="mt-4 pt-4 border-t border-[#6B2D8B]/10">
+                <span className="block text-[#6B2D8B] font-bold text-xs uppercase mb-2">Write to us</span>
+                <a href="mailto:enquiry@lakshawcfhospitals.in" className="text-gray-700 hover:text-[#7c3996] text-[13px] sm:text-sm font-medium transition-colors break-all">
+                  enquiry@lakshawcfhospitals.in
+                </a>
+              </li>
+              <li>
+                <span className="block text-[#6B2D8B] font-bold text-xs uppercase mb-2 mt-3">Call us</span>
+                <a href="tel:8489397777" className="text-gray-700 hover:text-[#7c3996] text-[13px] sm:text-sm font-medium transition-colors">
+                  84893 97777
+                </a>
               </li>
             </ul>
           </div>

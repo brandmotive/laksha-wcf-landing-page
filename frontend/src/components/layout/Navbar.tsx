@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
 import { Link, useNavigate } from "react-router-dom";
-import logo from "../../assets/images/HospitalLogo.png";
+// import logo from "../../assets/images/HospitalLogo.png";
+import navLogo from "../../assets/images/logos/LakshaAndWCFLogo.png"
 import { useScrolled } from "../../hooks/useScrolled";
 import { navMenu } from "../../data/navMenu";
 import MobileDrawer from "./MobileDrawer";
@@ -16,7 +17,8 @@ const SocialIcon = ({ children }: { children: React.ReactNode }) => (
 function navItemHref(slug?: string): string {
   if (!slug) return "#";
   // Anchor-style items on home page
-  if (["packages", "about", "blogs"].includes(slug)) return `/#${slug}`;
+  if (["packages", "blogs"].includes(slug)) return `/#${slug}`;
+  if (slug === "about") return "/about";
   return `/${slug}`;
 }
 
@@ -33,16 +35,17 @@ const DesktopNavItem = ({ item }: { item: (typeof navMenu)[number] }) => {
       const href = navItemHref(item.slug);
 
       if (href.startsWith("/#")) {
-        const id = href.replace("/#", "");
+        const hash = href.replace("/", "");
         if (window.location.pathname === "/") {
+          const id = hash.replace("#", "");
           const element = document.getElementById(id);
           if (element) {
             element.scrollIntoView({ behavior: "smooth" });
             return;
           }
         }
-        // If not on home page, or element not found, use traditional navigation
-        window.location.href = href;
+        // Use navigate for cross-page or fallback
+        navigate(`/${hash}`);
       } else {
         navigate(href);
       }
@@ -103,18 +106,32 @@ const DesktopNavItem = ({ item }: { item: (typeof navMenu)[number] }) => {
 // ── CTA buttons ───────────────────────────────────────────────────────────────
 function AppointmentButton() {
   return (
-    <a
-      href="tel:18002122"
-      className="flex justify-center items-center gap-1.5 bg-[#5C2476] hover:bg-[#4a1c5e] text-white text-xs font-semibold px-3 py-1.5 rounded-md transition-colors duration-200 whitespace-nowrap"
-    >
-      <svg className="w-3.5 h-3.5 shrink-0" fill="currentColor" viewBox="0 0 24 24">
-        <path d="M6.62 10.79a15.05 15.05 0 006.59 6.59l2.2-2.2a1 1 0 011.01-.24 11.46 11.46 0 003.58.57 1 1 0 011 1V21a1 1 0 01-1 1A17 17 0 013 5a1 1 0 011-1h3.5a1 1 0 011 1 11.46 11.46 0 00.57 3.58 1 1 0 01-.24 1.01z" />
-      </svg>
-      <span className="flex flex-col leading-none">
-        <span className="text-[9px] font-normal opacity-80">For Appointment & Emergency</span>
-        <span className="text-sm font-bold tracking-wide">1800 2122</span>
-      </span>
-    </a>
+    <div className="flex items-center gap-2">
+      <a
+        href="mailto:enquiry@lakshawcfhospitals.in"
+        className="hidden xl:flex items-center gap-1.5 bg-gray-50 hover:bg-gray-100 text-[#5C2476] border border-[#5C2476]/20 text-xs font-semibold px-3 py-1.5 rounded-md transition-colors duration-200 whitespace-nowrap"
+      >
+        <svg className="w-3.5 h-3.5 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
+        </svg>
+        <span className="flex flex-col leading-none">
+          <span className="text-[9px] font-normal opacity-80">Email Enquiry</span>
+          <span className="text-sm font-bold tracking-wide lowercase">enquiry@lakshawcfhospitals.in</span>
+        </span>
+      </a>
+      <a
+        href="tel:18002122"
+        className="flex justify-center items-center gap-1.5 bg-[#5C2476] hover:bg-[#4a1c5e] text-white text-xs font-semibold px-3 py-1.5 rounded-md transition-colors duration-200 whitespace-nowrap"
+      >
+        <svg className="w-3.5 h-3.5 shrink-0" fill="currentColor" viewBox="0 0 24 24">
+          <path d="M6.62 10.79a15.05 15.05 0 006.59 6.59l2.2-2.2a1 1 0 011.01-.24 11.46 11.46 0 003.58.57 1 1 0 011 1V21a1 1 0 01-1 1A17 17 0 013 5a1 1 0 011-1h3.5a1 1 0 011 1 11.46 11.46 0 00.57 3.58 1 1 0 01-.24 1.01z" />
+        </svg>
+        <span className="flex flex-col leading-none">
+          <span className="text-[9px] font-normal opacity-80">For Appointment & Emergency</span>
+          <span className="text-sm font-bold tracking-wide">84893 97777</span>
+        </span>
+      </a>
+    </div>
   );
 }
 
@@ -158,7 +175,7 @@ export default function Navbar() {
           <div className="flex items-center justify-between my-2">
             {/* Logo — always navigates home */}
             <Link to="/" className="flex flex-col shrink-0">
-              <img src={logo} alt="WCF Hospital" className="h-10 sm:h-12 md:h-16 w-auto object-contain" />
+              <img src={navLogo} alt="WCF Hospital" className="h-10 sm:h-12 md:h-18 w-auto object-contain" />
             </Link>
 
             {/* Right-side actions */}
