@@ -36,6 +36,7 @@ export const packages: PackageData[] = [
     ],
     color: {
       border: "#22c55e",
+      cardBg: "#22c55e",
       shadow: "0 1px 3px 0 rgba(34,197,94,0.15)",
       shadowHover: "0 20px 40px -8px rgba(34,197,94,0.35), 0 0 0 2px rgba(34,197,94,0.25)",
     },
@@ -61,6 +62,7 @@ export const packages: PackageData[] = [
     ],
     color: {
       border: "#7c3aed",
+      cardBg: "#7c3aed",
       shadow: "0 1px 3px 0 rgba(124,58,237,0.15)",
       shadowHover: "0 20px 40px -8px rgba(124,58,237,0.35), 0 0 0 2px rgba(124,58,237,0.25)",
     },
@@ -87,6 +89,7 @@ export const packages: PackageData[] = [
     ],
     color: {
       border: "#ec4899",
+      cardBg: "#ec4899",
       shadow: "0 1px 3px 0 rgba(236,72,153,0.15)",
       shadowHover: "0 20px 40px -8px rgba(236,72,153,0.35), 0 0 0 2px rgba(236,72,153,0.25)",
     },

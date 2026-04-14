@@ -66,7 +66,13 @@ export default function CentresOfExcellence() {
           <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold text-gray-900 leading-tight">
             Our Centres of Excellence
           </h2>
-          <p className="text-[13px] sm:text-sm md:text-[15px] text-[#6B2D8B] leading-relaxed">
+          {/* Horizontal Line with Dot (Image 2 style) */}
+          <div className="flex items-center justify-center gap-3 mt-1">
+            <span className="block w-12 h-[3px] bg-[#E91E8C] rounded-full" />
+            <span className="block w-3 h-3 rounded-full bg-[#E91E8C]" />
+            <span className="block w-12 h-[3px] bg-[#E91E8C] rounded-full" />
+          </div>
+          <p className="text-[13px] sm:text-sm md:text-[15px] text-[#6B2D8B] leading-relaxed mt-1">
             Discover Our Premier Centers of Medical Expertise. Delve deeper into the exceptional
             healthcare services we champion, meticulously crafted to meet global standards and
             dedicated to ensuring patient well-being at every touchpoint.

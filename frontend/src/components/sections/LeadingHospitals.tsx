@@ -1,7 +1,7 @@
 import React from 'react';
 import WCFVillivakkamImg from '../../assets/images/Hospitals/Wcf_Villivakam_Enhanced.png';
 import LakshaHospitalImg from '../../assets/images/Hospitals/Laksha_Hospital.png';
-import WCFRoyapettahImg from '../../assets/images/Hospitals/Wcf_Royapettah.png';
+import WCFKolathurImg from '../../assets/images/Hospitals/WCF_Kolathur.jpeg';
 
 
 
@@ -13,7 +13,7 @@ const hospitals = [
   },
   {
     name: 'WCF Kolathur',
-    image: WCFRoyapettahImg,
+    image: WCFKolathurImg,
     url: '#wcf-kolathur',
   },
   {
@@ -33,6 +33,12 @@ const LeadingHospitals: React.FC = () => {
           <h2 className="text-3xl md:text-4xl font-bold text-gray-900 tracking-tight">
             Our Hospitals
           </h2>
+          {/* Horizontal Line with Dot (Image 2 style) */}
+          <div className="flex items-center justify-center gap-3 -mt-3">
+            <span className="block w-12 h-[3px] bg-[#E91E8C] rounded-full" />
+            <span className="block w-3 h-3 rounded-full bg-[#E91E8C]" />
+            <span className="block w-12 h-[3px] bg-[#E91E8C] rounded-full" />
+          </div>
           <div className="flex justify-center flex-col items-center">
             <p className="text-gray-700 leading-relaxed text-sm md:text-[15px] max-w-4xl text-center pb-8 border-b border-gray-200">
               Our Hospital stands as a testament to the hospital's continual

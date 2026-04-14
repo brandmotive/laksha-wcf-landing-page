@@ -149,11 +149,17 @@ const PackagesSection = () => {
       <div className="w-[90%] md:w-[80%] flex flex-col items-center">
 
         {/* Header Section */}
-        <div className="text-center w-full flex flex-col gap-3 md: mt-12 justify-between mb-5">
+        <div className="text-center w-full flex flex-col gap-3 md:mt-12 justify-between mb-5">
           <h2 className="text-3xl md:text-4xl font-bold text-gray-900 tracking-tight">
             Our Care Packages
           </h2>
-          <div className="flex justify-center flex-col items-center">
+          {/* Horizontal Line with Dot (Image 2 style) */}
+          <div className="flex items-center justify-center gap-3 mt-1">
+            <span className="block w-12 h-[3px] bg-[#E91E8C] rounded-full" />
+            <span className="block w-3 h-3 rounded-full bg-[#E91E8C]" />
+            <span className="block w-12 h-[3px] bg-[#E91E8C] rounded-full" />
+          </div>
+          <div className="flex justify-center flex-col items-center mt-2">
             <p className="text-gray-700 leading-relaxed text-sm md:text-[15px] max-w-2xl text-center">
               Comprehensive maternity care packages tailored for you and your baby's journey.
             </p>
@@ -167,9 +173,9 @@ const PackagesSection = () => {
               key={pkg.id}
               id={pkg.id}
               onClick={() => openPopup(pkg)}
-              className="group flex flex-col bg-white rounded-2xl md:rounded-3xl transition-all duration-300 overflow-hidden cursor-pointer h-[380px] md:h-[420px] p-6 hover:-translate-y-2 relative"
+              className="group flex flex-col rounded-2xl md:rounded-3xl transition-all duration-300 overflow-hidden cursor-pointer h-[380px] md:h-[420px] p-6 hover:-translate-y-2 relative"
               style={{
-                border: `1.5px solid ${pkg.color.border}`,
+                backgroundColor: pkg.color.cardBg,
                 boxShadow: pkg.color.shadow,
               }}
               onMouseEnter={(e) => {
@@ -182,10 +188,10 @@ const PackagesSection = () => {
               <div className="flex flex-col h-full">
                 {/* Title and Icon */}
                 <div className="flex items-start justify-between mb-4">
-                  <h3 className="text-[18px] md:text-[20px] font-bold text-gray-900 leading-snug group-hover:text-[#6B2D8B] transition-colors pr-2">
+                  <h3 className="text-[18px] md:text-[20px] font-bold text-white leading-snug transition-colors pr-2">
                     {pkg.title}
                   </h3>
-                  <div className="bg-[#fdf4fb] p-2.5 rounded-xl shrink-0 text-[#E91E8C] group-hover:scale-110 transition-transform duration-300">
+                  <div className="bg-white/20 p-2.5 rounded-xl shrink-0 text-white group-hover:scale-110 transition-transform duration-300">
                     <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
                     </svg>
@@ -194,24 +200,24 @@ const PackagesSection = () => {
 
                 {/* Price */}
                 <div className="mb-6">
-                  <span className="text-2xl md:text-3xl font-bold text-[#6B2D8B]">{pkg.price}</span>
+                  <span className="text-2xl md:text-3xl font-bold text-white">{pkg.price}</span>
                 </div>
 
                 {/* Description Heading */}
-                <h4 className="font-semibold text-gray-800 text-sm md:text-[15px] mb-3">
+                <h4 className="font-semibold text-white/90 text-sm md:text-[15px] mb-3">
                   {pkg.descriptionHeading}
                 </h4>
 
                 {/* Display List (Facilities first, then limited Points) */}
-                <ul className="text-gray-600 text-sm md:text-[15px] space-y-2 flex-grow overflow-hidden">
+                <ul className="text-white/80 text-sm md:text-[15px] space-y-2 flex-grow overflow-hidden">
                   {(pkg.facilities.length > 0 ? pkg.facilities : pkg.points).slice(0, 3).map((item, index) => (
                     <li key={index} className="flex items-start">
-                      <span className="mr-2 text-[#E91E8C] text-[18px] leading-tight">•</span>
+                      <span className="mr-2 text-white/90 text-[18px] leading-tight">•</span>
                       <span className="line-clamp-1">{item}</span>
                     </li>
                   ))}
                   {(pkg.facilities.length > 0 ? pkg.facilities.length : pkg.points.length) > 3 && (
-                    <li className="flex items-start text-gray-400">
+                    <li className="flex items-start text-white/60">
                       <span className="mr-2">&nbsp;</span>
                       <span>.........</span>
                     </li>
@@ -220,7 +226,7 @@ const PackagesSection = () => {
 
                 {/* More Details link — opens popup */}
                 <div
-                  className="mt-auto flex items-center gap-1 text-[#6B2D8B] font-semibold text-sm md:text-[15px] group-hover:translate-x-1 transition-transform duration-300 cursor-pointer select-none"
+                  className="mt-auto flex items-center gap-1 text-white font-semibold text-sm md:text-[15px] group-hover:translate-x-1 transition-transform duration-300 cursor-pointer select-none"
                   onClick={(e) => { e.stopPropagation(); openPopup(pkg); }}
                 >
                   More Details...
