@@ -1,5 +1,5 @@
 import Navbar from "../components/layout/Navbar";
-import Footer from "../components/layout/Footer";
+
 import EnquireNow from "../components/layout/EnquireNow";
 import FadeIn from "../components/common/FadeIn";
 import { Link } from "react-router-dom";
@@ -152,7 +152,7 @@ export default function AboutUsPage() {
         </div>
       </section>
 
-      <Footer />
+
     </div>
   );
 }
