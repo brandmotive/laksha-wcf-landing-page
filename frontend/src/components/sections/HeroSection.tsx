@@ -44,10 +44,10 @@ export default function HeroSection() {
       box1Title: "Uniqueness",
       box1Points: [
         "Delivered First Water Birth Delivery",
-        "Inhouse OG Consultants",
+        "Inhouse OG Consultants Module",
         "Delivered Low Birth (Delivered 600 grams)",
         "Allowing Partners during labour",
-        "VBAC - Vaginal Birth after",
+        "VBAC - Vaginal Birth after C-Section",
         "Painless Delivery",
       ],
       box2Title: "Introduced First in India",
@@ -120,7 +120,7 @@ export default function HeroSection() {
           {/* Main Heading Text */}
           <div className="rounded-xl  md:mx-auto max-w-[90vw] md:max-w-3xl lg:max-w-4xl drop-shadow-md">
             <h1 className="text-black text-xl sm:text-4xl md:text-[40px] font-bold font-sans leading-tight tracking-wide drop-shadow-sm">
-              Best Maternity Hospital in Chennai
+              Best Maternity Normal Delivery Hospital in Chennai
             </h1>
             <p className="text-black text-[18px] sm:text-xl md:text-[22px] font-semibold md:mt-4 leading-snug drop-shadow-sm">
               26 Years of Excellence

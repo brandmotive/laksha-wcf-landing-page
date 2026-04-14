@@ -70,25 +70,25 @@ const PackagesSection = () => {
         {/* Scrollable Content */}
         <div className="p-6 md:p-8 overflow-y-auto flex-1 custom-scrollbar">
           <div className="mb-8">
-            <span className="text-3xl md:text-4xl font-extrabold text-[#6B2D8B]">
+            <span className="text-3xl md:text-4xl font-bold text-[#6B2D8B]">
               {selectedPackage?.price}
             </span>
           </div>
 
           <div className="space-y-6">
-            {/* Exclusions */}
-            {selectedPackage?.exclusions && selectedPackage.exclusions.length > 0 && (
+            {/* Facilities (New) */}
+            {selectedPackage?.facilities && selectedPackage.facilities.length > 0 && (
               <div>
                 <h4 className="font-semibold text-gray-800 text-[16px] md:text-[18px] mb-3">
-                  Exclusions:
+                  Facilities:
                 </h4>
                 <ul className="text-gray-600 text-[15px] space-y-2">
-                  {selectedPackage.exclusions.map((exc, index) => (
+                  {selectedPackage.facilities.map((fac, index) => (
                     <li key={index} className="flex items-start">
-                      <span className="mr-2 text-gray-400 mt-1">
-                        <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 8v4m0 4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" /></svg>
+                      <span className="mr-2 text-green-500 mt-1">
+                        <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" /></svg>
                       </span>
-                      <span>{exc}</span>
+                      <span>{fac}</span>
                     </li>
                   ))}
                 </ul>
@@ -194,7 +194,7 @@ const PackagesSection = () => {
 
                 {/* Price */}
                 <div className="mb-6">
-                  <span className="text-2xl md:text-3xl font-extrabold text-[#6B2D8B]">{pkg.price}</span>
+                  <span className="text-2xl md:text-3xl font-bold text-[#6B2D8B]">{pkg.price}</span>
                 </div>
 
                 {/* Description Heading */}
@@ -202,15 +202,15 @@ const PackagesSection = () => {
                   {pkg.descriptionHeading}
                 </h4>
 
-                {/* Points List */}
+                {/* Display List (Facilities first, then limited Points) */}
                 <ul className="text-gray-600 text-sm md:text-[15px] space-y-2 flex-grow overflow-hidden">
-                  {pkg.points.slice(0, 3).map((point, index) => (
+                  {(pkg.facilities.length > 0 ? pkg.facilities : pkg.points).slice(0, 3).map((item, index) => (
                     <li key={index} className="flex items-start">
                       <span className="mr-2 text-[#E91E8C] text-[18px] leading-tight">•</span>
-                      <span className="line-clamp-1">{point}</span>
+                      <span className="line-clamp-1">{item}</span>
                     </li>
                   ))}
-                  {pkg.points.length > 3 && (
+                  {(pkg.facilities.length > 0 ? pkg.facilities.length : pkg.points.length) > 3 && (
                     <li className="flex items-start text-gray-400">
                       <span className="mr-2">&nbsp;</span>
                       <span>.........</span>

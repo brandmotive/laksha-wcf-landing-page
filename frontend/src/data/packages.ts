@@ -6,6 +6,7 @@ export interface PackageData {
   descriptionHeading: string;
   points: string[];
   exclusions: string[];
+  facilities: string[];
   color: {
     border: string;
     shadow: string;
@@ -19,14 +20,19 @@ export const packages: PackageData[] = [
     title: "Inaugural Delivery Offer (Green Package)",
     shortTitle: "Green Package",
     price: "₹29,999",
-    descriptionHeading: "Applicable for pregnancies above 37 weeks",
+    descriptionHeading: "Inclusions:",
     exclusions: [
       "Medicines: ₹10,000 (excluded)",
       "Baby charges: ₹5,000 (excluded)"
     ],
+    facilities: [
+      "Applicable for pregnancies above 37 weeks",
+      "General Ward Room",
+    ],
     points: [
-      "Medicines: ₹10,000 (excluded)",
-      "Baby charges: ₹5,000 (excluded)",
+      "Standard Delivery Care",
+      "Specialist Pediatric Support",
+      "Nursing & Ward Care",
     ],
     color: {
       border: "#22c55e",
@@ -44,6 +50,7 @@ export const packages: PackageData[] = [
       "Medicines: ₹10,000 (excluded)",
       "Baby charges: ₹5,000 (excluded)"
     ],
+    facilities: [],
     points: [
       "Complete antenatal care (conception to delivery)",
       "Free Blood Tests & ultrasounds",
@@ -67,6 +74,7 @@ export const packages: PackageData[] = [
     exclusions: [
       "Medicines: ₹10,000 (excluded)"
     ],
+    facilities: [],
     points: [
       "Complete antenatal care (conception to delivery)",
       "Free Blood tests & ultrasounds",

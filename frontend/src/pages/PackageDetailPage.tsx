@@ -53,14 +53,14 @@ function PackageHero({ pkg }: { pkg: PackageDetail }) {
         </span>
 
         {/* Title */}
-        <h1 className="text-white font-extrabold leading-tight text-2xl sm:text-3xl md:text-4xl lg:text-5xl drop-shadow-lg">
+        <h1 className="text-white font-bold leading-tight text-2xl sm:text-3xl md:text-4xl lg:text-5xl drop-shadow-lg">
           {pkg.title}
         </h1>
 
         {/* Price badge */}
         <div className="flex items-center gap-3">
           <span className="text-white/70 text-sm font-medium">Starting from</span>
-          <span className="bg-white/20 backdrop-blur-sm border border-white/30 text-white font-extrabold text-2xl sm:text-3xl px-5 py-1.5 rounded-2xl shadow-lg">
+          <span className="bg-white/20 backdrop-blur-sm border border-white/30 text-white font-bold text-2xl sm:text-3xl px-5 py-1.5 rounded-2xl shadow-lg">
             {pkg.price}
           </span>
         </div>
@@ -362,7 +362,7 @@ function FAQSection({ pkg }: { pkg: PackageDetail }) {
             >
               Got Questions?
             </p>
-            <h2 className="text-2xl sm:text-3xl font-extrabold text-gray-900">
+            <h2 className="text-2xl sm:text-3xl font-bold text-gray-900">
               Frequently Asked Questions
             </h2>
             <div className="flex items-center justify-center gap-3 mt-3">

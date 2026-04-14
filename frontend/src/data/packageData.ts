@@ -61,7 +61,10 @@ export const packageDataMap: Record<string, PackageDetail> = {
       "Medicines: ₹10,000 (excluded)",
       "Baby charges: ₹5,000 (excluded)",
     ],
-    facilities: [],
+    facilities: [
+      "Applicable for pregnancies above 37 weeks",
+      "General Ward Room",
+    ],
     faqs: [
       {
         question: "Who is this package designed for?",
