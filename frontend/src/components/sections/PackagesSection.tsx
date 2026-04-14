@@ -76,7 +76,7 @@ const PackagesSection = () => {
           </div>
 
           <div className="space-y-6">
-            {/* Facilities (New) */}
+            {/* Facilities */}
             {selectedPackage?.facilities && selectedPackage.facilities.length > 0 && (
               <div>
                 <h4 className="font-semibold text-gray-800 text-[16px] md:text-[18px] mb-3">
@@ -109,6 +109,45 @@ const PackagesSection = () => {
                 ))}
               </ul>
             </div>
+
+            {/* In Patient's Charges Covered */}
+            {selectedPackage?.inPatientChargesCovered && (
+              <div>
+                <h4 className="font-semibold text-gray-800 text-[16px] md:text-[18px] mb-3">
+                  In Patient's Charges Covered:
+                </h4>
+                <ul className="text-gray-600 text-[15px] space-y-2">
+                  {selectedPackage.inPatientChargesCovered.map((charge, index) => (
+                    <li key={index} className="flex items-start">
+                      <span className="mr-2 text-green-500 mt-1">
+                        <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" /></svg>
+                      </span>
+                      <span>{charge}</span>
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            )}
+
+            {/* Exclusions */}
+            {selectedPackage?.exclusions && selectedPackage.exclusions.length > 0 && (
+              <div className="bg-amber-50/50 border border-amber-100 rounded-xl p-4">
+                <h4 className="font-bold text-amber-900 text-[15px] md:text-[16px] mb-3 flex items-center gap-2">
+                  <svg className="w-4 h-4 text-amber-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 9v2m0 4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+                  </svg>
+                  Exclusions (Billed Separately):
+                </h4>
+                <ul className="text-amber-800/80 text-[14px] md:text-[15px] space-y-2">
+                  {selectedPackage.exclusions.map((exc, index) => (
+                    <li key={index} className="flex items-start">
+                      <span className="mr-2 text-amber-500 font-bold">•</span>
+                      <span>{exc}</span>
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            )}
           </div>
         </div>
 
@@ -188,8 +227,11 @@ const PackagesSection = () => {
               <div className="flex flex-col h-full">
                 {/* Title and Icon */}
                 <div className="flex items-start justify-between mb-4">
-                  <h3 className="text-[18px] md:text-[20px] font-bold text-white leading-snug transition-colors pr-2">
+                  <h3 className="text-[18px] md:text-[20px] font-bold text-white leading-tight transition-colors pr-2">
                     {pkg.title}
+                    <span className="block text-[14px] md:text-[16px] font-medium opacity-90 mt-1">
+                      {pkg.shortTitle}
+                    </span>
                   </h3>
                   <div className="bg-white/20 p-2.5 rounded-xl shrink-0 text-white group-hover:scale-110 transition-transform duration-300">
                     <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">

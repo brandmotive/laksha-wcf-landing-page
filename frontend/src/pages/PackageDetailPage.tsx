@@ -259,6 +259,34 @@ function DetailSection({ pkg, image }: { pkg: PackageDetail; image: string }) {
               </div>
             )}
 
+            {/* In Patient's Charges Covered */}
+            {pkg.inPatientChargesCovered.length > 0 && (
+              <div>
+                <h2 className="text-base sm:text-lg font-bold text-gray-800 mb-3 flex items-center gap-2">
+                  <span
+                    className="flex items-center justify-center w-7 h-7 rounded-full shrink-0"
+                    style={{ background: `${pkg.tagColor}18`, color: pkg.tagColor }}
+                  >
+                    <svg className="w-4 h-4" fill="none" stroke="currentColor" strokeWidth={2} viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
+                    </svg>
+                  </span>
+                  In Patient's Charges Covered
+                </h2>
+                <ul className="space-y-2 pl-9">
+                  {pkg.inPatientChargesCovered.map((charge, i) => (
+                    <li key={i} className="flex items-start gap-2.5 text-gray-600 text-sm sm:text-base">
+                      <span
+                        className="mt-1.5 w-2 h-2 rounded-full shrink-0"
+                        style={{ background: pkg.tagColor }}
+                      />
+                      {charge}
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            )}
+
             {/* CTA strip */}
             <div className="pt-2 flex flex-wrap gap-3">
               <a

@@ -27,13 +27,14 @@ export interface PackageDetail {
   whyChoose: WhyChoosePoint[];
   exclusions: string[];
   facilities: string[];
+  inPatientChargesCovered: string[];
   faqs: FAQ[];
 }
 
 export const packageDataMap: Record<string, PackageDetail> = {
   "pkg-1": {
     id: "pkg-1",
-    title: "Inaugural Delivery Offer (Green Package)",
+    title: "Inaugural Delivery Offer",
     subtitle: "Safe Beginnings",
     price: "₹29,999",
     tagColor: "#16a34a",
@@ -58,12 +59,23 @@ export const packageDataMap: Record<string, PackageDetail> = {
       },
     ],
     exclusions: [
-      "Medicines: ₹10,000 (excluded)",
-      "Baby charges: ₹5,000 (excluded)",
+      "Medicines",
+      "Baby charges",
+      "Blood Reservation/Units"
     ],
     facilities: [
       "Applicable for pregnancies above 37 weeks",
       "General Ward Room",
+    ],
+    inPatientChargesCovered: [
+      "Doctor's Fees",
+      "Investigation",
+      "OT Charges",
+      "Medical Equipment Charges",
+      "Post Operative Charges",
+      "Labour Room",
+      "Hospital Charges",
+      "General Ward Room"
     ],
     faqs: [
       {
@@ -91,7 +103,7 @@ export const packageDataMap: Record<string, PackageDetail> = {
 
   "pkg-2": {
     id: "pkg-2",
-    title: "Single Room (Purple Package)",
+    title: "Single Room",
     subtitle: "The Comfort Circle",
     price: "₹59,999",
     tagColor: "#6B2D8B",
@@ -116,8 +128,9 @@ export const packageDataMap: Record<string, PackageDetail> = {
       },
     ],
     exclusions: [
-      "Medicines: ₹10,000 (excluded)",
-      "Baby charges: ₹5,000 (excluded)",
+      "Medicines",
+      "Baby charges",
+      "Blood Reservation/Units"
     ],
     facilities: [
       "Complete antenatal care (conception to delivery)",
@@ -125,7 +138,17 @@ export const packageDataMap: Record<string, PackageDetail> = {
       "Free CTG monitoring",
       "Free obstetric consultations",
       "IP hospitalization covered",
-      "45 days postnatal free consultations",
+      "45 days postpartum period free consultations",
+    ],
+    inPatientChargesCovered: [
+      "Doctor's Fees",
+      "Investigation",
+      "OT Charges",
+      "Medical Equipment Charges",
+      "Post Operative Charges",
+      "Labour Room",
+      "Hospital Charges",
+      "General Ward Room"
     ],
     faqs: [
       {
@@ -153,7 +176,7 @@ export const packageDataMap: Record<string, PackageDetail> = {
 
   "pkg-3": {
     id: "pkg-3",
-    title: "Suite Room Pink Package",
+    title: "Suite Room",
     subtitle: "The Royal Arrival",
     price: "₹99,999",
     tagColor: "#E91E8C",
@@ -182,7 +205,8 @@ export const packageDataMap: Record<string, PackageDetail> = {
       },
     ],
     exclusions: [
-      "Medicines: ₹10,000 (excluded)",
+      "Medicines",
+      "Blood Reservation/Units"
     ],
     facilities: [
       "Complete antenatal care (conception to delivery)",
@@ -190,9 +214,19 @@ export const packageDataMap: Record<string, PackageDetail> = {
       "Free CTG monitoring",
       "Free obstetric consultations",
       "IP hospitalization covered",
-      "45 days postnatal free consultations",
+      "45 days postpartum period free consultations",
       "Baby charges included",
       "Painless delivery included",
+    ],
+    inPatientChargesCovered: [
+      "Doctor's Fees",
+      "Investigation",
+      "OT Charges",
+      "Medical Equipment Charges",
+      "Post Operative Charges",
+      "Labour Room",
+      "Hospital Charges",
+      "General Ward Room"
     ],
     faqs: [
       {

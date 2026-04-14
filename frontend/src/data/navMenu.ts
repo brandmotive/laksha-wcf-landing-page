@@ -84,9 +84,9 @@ export const navMenu: NavItem[] = [
   {
     label: "Our Hospitals",
     children: [
+      { label: "Laksha WCF Royapettah", slug: "laksha-wcf-royapettah", heroTagline: "Trusted care hospital." },
       { label: "WCF Villivakkam", slug: "wcf-villivakkam", heroTagline: "World-class care at the Chennai hospital." },
       { label: "WCF Kolathur", slug: "wcf-kolathur", heroTagline: "Excellence in healthcare." },
-      { label: "Laksha WCF Royapettah", slug: "laksha-wcf-royapettah", heroTagline: "Trusted care hospital." },
     ],
   },
 ];

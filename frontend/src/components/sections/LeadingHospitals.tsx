@@ -7,6 +7,11 @@ import WCFKolathurImg from '../../assets/images/Hospitals/WCF_Kolathur.jpeg';
 
 const hospitals = [
   {
+    name: 'Laksha WCF Royapettah',
+    image: LakshaHospitalImg,
+    url: '#laksha-wcf-royapettah',
+  },
+  {
     name: 'WCF Villivakkam',
     image: WCFVillivakkamImg,
     url: '#wcf-villivakkam',
@@ -15,11 +20,6 @@ const hospitals = [
     name: 'WCF Kolathur',
     image: WCFKolathurImg,
     url: '#wcf-kolathur',
-  },
-  {
-    name: 'Laksha WCF Royapettah',
-    image: LakshaHospitalImg,
-    url: '#laksha-wcf-royapettah',
   },
 ];
 

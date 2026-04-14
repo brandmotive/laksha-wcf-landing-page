@@ -13,27 +13,38 @@ export interface PackageData {
     shadow: string;
     shadowHover: string;
   };
+  inPatientChargesCovered: string[];
 }
 
 export const packages: PackageData[] = [
   {
     id: "pkg-1",
-    title: "Inaugural Delivery Offer (Green Package)",
-    shortTitle: "Green Package",
+    title: "Inaugural Delivery Offer",
+    shortTitle: "(Green Package)",
     price: "₹29,999",
-    descriptionHeading: "Inclusions:",
+    descriptionHeading: "Facilities include:",
     exclusions: [
-      "Medicines: ₹10,000 (excluded)",
-      "Baby charges: ₹5,000 (excluded)"
+      "Medicines", //: ₹10,000 (excluded)
+      "Baby charges", //: ₹5,000 (excluded)
+      "Blood Reservation/Units"
     ],
-    facilities: [
-      "Applicable for pregnancies above 37 weeks",
-      "General Ward Room",
+    inPatientChargesCovered: [
+      "Doctor's Fees",
+      "Investigation",
+      "OT Charges",
+      "Medical Equipment Charges",
+      "Post Operative Charges",
+      "Labour Room",
+      "Hospital Charges",
+      "General Ward Room"
     ],
+    facilities: [],
     points: [
+      "Applicable for pregnancies above 37 weeks",
       "Standard Delivery Care",
       "Specialist Pediatric Support",
       "Nursing & Ward Care",
+      "45 days postpartum period free consultations"
     ],
     color: {
       border: "#22c55e",
@@ -44,13 +55,23 @@ export const packages: PackageData[] = [
   },
   {
     id: "pkg-2",
-    title: "Single Room (Purple Package)",
-    shortTitle: "Purple Package",
+    title: "Single Room",
+    shortTitle: "(Purple Package)",
     price: "₹59,999",
     descriptionHeading: "Facilities include:",
     exclusions: [
       "Medicines: ₹10,000 (excluded)",
       "Baby charges: ₹5,000 (excluded)"
+    ],
+    inPatientChargesCovered: [
+      "Doctor's Fees",
+      "Investigation",
+      "OT Charges",
+      "Medical Equipment Charges",
+      "Post Operative Charges",
+      "Labour Room",
+      "Hospital Charges",
+      "General Ward Room"
     ],
     facilities: [],
     points: [
@@ -59,7 +80,7 @@ export const packages: PackageData[] = [
       "Free CTG monitoring",
       "Free obstetric consultations",
       "IP hospitalization covered",
-      "45 days postnatal free consultations"
+      "45 days postpartum period free consultations"
     ],
     color: {
       border: "#7E3FAB", //#7c3aed
@@ -70,12 +91,22 @@ export const packages: PackageData[] = [
   },
   {
     id: "pkg-3",
-    title: "Suite Room Pink Package",
-    shortTitle: "Pink Package",
+    title: "Suite Room",
+    shortTitle: "(Pink Package)",
     price: "₹99,999",
     descriptionHeading: "Facilities include:",
     exclusions: [
       "Medicines: ₹10,000 (excluded)"
+    ],
+    inPatientChargesCovered: [
+      "Doctor's Fees",
+      "Investigation",
+      "OT Charges",
+      "Medical Equipment Charges",
+      "Post Operative Charges",
+      "Labour Room",
+      "Hospital Charges",
+      "General Ward Room"
     ],
     facilities: [],
     points: [
@@ -84,7 +115,7 @@ export const packages: PackageData[] = [
       "Free CTG monitoring",
       "Free obstetric consultations",
       "IP hospitalization covered",
-      "45 days postnatal free consultations",
+      "45 days postpartum period free consultations",
       "Baby charges included",
       "Painless delivery included"
     ],

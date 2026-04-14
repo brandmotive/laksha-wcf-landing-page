@@ -9,13 +9,13 @@ export default function EnquireNow() {
   };
 
   return (
-    <div className="fixed right-0 top-[80%] -translate-y-1/2 z-50 flex flex-col items-end font-sans w-[90px] md:w-[105px] lg:w-[115px]">
+    <div className="fixed right-0 top-[70%] -translate-y-1/2 z-50 flex flex-col items-end font-sans w-[90px] md:w-[105px] lg:w-[115px] animate-blink">
       {/* Package Offers tab at the top */}
       <div className="bg-[#7E3FAB] text-white text-[9px] md:text-[10px] font-bold uppercase py-2 px-2 rounded-tl-xl w-full text-center shadow-md leading-tight">
         Delivery <br /> Package Offers
       </div>
 
-      <div className="bg-white border border-r-0 border-gray-200 rounded-bl-2xl shadow-2xl overflow-hidden w-full">
+      <div className="bg-white border border-r-0 border-gray-200 shadow-2xl overflow-hidden w-full">
         {packages.map((pkg, index) => (
           <button
             key={pkg.id}
@@ -40,6 +40,12 @@ export default function EnquireNow() {
             </span>
           </button>
         ))}
+      </div>
+
+      {/* Insurance and EMI info at the bottom */}
+      <div className="bg-[#7E3FAB] text-white text-[8px] md:text-[9px] font-bold uppercase py-2 px-1 rounded-bl-xl w-full text-center shadow-md leading-tight">
+        Insurance(cashless) & <br /> EMI option <br />
+        <span className="inline-block mt-0.5">available</span>
       </div>
     </div>
   );
