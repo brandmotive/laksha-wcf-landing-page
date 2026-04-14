@@ -1,25 +1,25 @@
+import { useNavigate } from "react-router-dom";
 import { packages } from "../../data/packages";
 
 export default function EnquireNow() {
-  const scrollToSection = (id: string) => {
-    if (window.location.pathname === "/") {
-      // Try to scroll to specific package or fallback to main packages section
-      const element = document.getElementById(id) || document.getElementById("packages");
-      if (element) {
-        element.scrollIntoView({ behavior: "smooth" });
-      }
-    } else {
-      window.location.href = `/#${id}`;
-    }
+  const navigate = useNavigate();
+
+  const handlePackageClick = (id: string) => {
+    navigate(`/package/${id}`);
   };
 
   return (
     <div className="fixed right-0 top-[80%] -translate-y-1/2 z-50 flex flex-col items-end font-sans">
+      {/* Package Offers tab at the top */}
+      <div className="bg-[#7E3FAB] text-white text-[8px] font-bold uppercase py-1 px-3 rounded-tl-lg mr-0 mb-[1px] tracking-widest shadow-md">
+        Package Offers
+      </div>
+
       <div className="bg-white border border-r-0 border-gray-200 rounded-l-2xl shadow-2xl overflow-hidden w-[85px] md:w-[100px] lg:w-[110px]">
         {packages.map((pkg, index) => (
           <button
             key={pkg.id}
-            onClick={() => scrollToSection(pkg.id)}
+            onClick={() => handlePackageClick(pkg.id)}
             className={`w-full group px-2 py-3 md:px-3 md:py-4 flex flex-col items-center text-center transition-all duration-300 hover:bg-gray-50 relative ${index !== packages.length - 1 ? "border-b border-gray-100" : ""
               }`}
           >
@@ -40,11 +40,6 @@ export default function EnquireNow() {
             </span>
           </button>
         ))}
-      </div>
-
-      {/* Optional: A small "Special Offers" tab on top */}
-      <div className="bg-[#7E3FAB] text-white text-[8px] font-bold uppercase py-1 px-3 rounded-tl-lg mr-0 mb-[1px] tracking-widest shadow-md">
-        Offers
       </div>
     </div>
   );
