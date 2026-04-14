@@ -42,5 +42,5 @@ body {
 }
 
 .animate-blink {
-  animation: blink 1.5s infinite ease-in-out;
+  animation: blink 0s infinite ease-in-out;
 }
