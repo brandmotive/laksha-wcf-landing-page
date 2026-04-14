@@ -53,7 +53,7 @@ export default function HeroSection() {
       box2Title: "Introduced First in India",
       box2Points: [
         "Normal or Section at Same Cost",
-        "EMI Option from Hospital",
+        "Hospital EMI Option",
         "Package System from Conception to delivery",
         "Allowing Partner during labour",
       ],

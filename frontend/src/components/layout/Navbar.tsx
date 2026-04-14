@@ -120,7 +120,7 @@ function AppointmentButton() {
         </span>
       </a>
       <a
-        href="tel:18002122"
+        href="tel:8489397777"
         className="flex justify-center items-center gap-1.5 bg-[#5C2476] hover:bg-[#4a1c5e] text-white text-xs font-semibold px-3 py-1.5 rounded-md transition-colors duration-200 whitespace-nowrap"
       >
         <svg className="w-3.5 h-3.5 shrink-0" fill="currentColor" viewBox="0 0 24 24">
