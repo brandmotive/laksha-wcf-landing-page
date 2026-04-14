@@ -9,6 +9,7 @@ export interface PackageData {
   facilities: string[];
   color: {
     border: string;
+    cardBg: string;
     shadow: string;
     shadowHover: string;
   };

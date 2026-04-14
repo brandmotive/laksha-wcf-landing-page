@@ -9,13 +9,13 @@ export default function EnquireNow() {
   };
 
   return (
-    <div className="fixed right-0 top-[80%] -translate-y-1/2 z-50 flex flex-col items-end font-sans">
+    <div className="fixed right-0 top-[80%] -translate-y-1/2 z-50 flex flex-col items-end font-sans w-[90px] md:w-[105px] lg:w-[115px]">
       {/* Package Offers tab at the top */}
-      <div className="bg-[#7E3FAB] text-white text-[8px] font-bold uppercase py-1 px-3 rounded-tl-lg mr-0 mb-[1px] tracking-widest shadow-md">
-        Package Offers
+      <div className="bg-[#7E3FAB] text-white text-[9px] md:text-[10px] font-bold uppercase py-2 px-2 rounded-tl-xl w-full text-center shadow-md leading-tight">
+        Delivery <br /> Package Offers
       </div>
 
-      <div className="bg-white border border-r-0 border-gray-200 rounded-l-2xl shadow-2xl overflow-hidden w-[85px] md:w-[100px] lg:w-[110px]">
+      <div className="bg-white border border-r-0 border-gray-200 rounded-bl-2xl shadow-2xl overflow-hidden w-full">
         {packages.map((pkg, index) => (
           <button
             key={pkg.id}
