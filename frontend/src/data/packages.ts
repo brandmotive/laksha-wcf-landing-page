@@ -62,8 +62,8 @@ export const packages: PackageData[] = [
       "45 days postnatal free consultations"
     ],
     color: {
-      border: "#7c3aed",
-      cardBg: "#7c3aed",
+      border: "#7E3FAB", //#7c3aed
+      cardBg: "#7E3FAB",
       shadow: "0 1px 3px 0 rgba(124,58,237,0.15)",
       shadowHover: "0 20px 40px -8px rgba(124,58,237,0.35), 0 0 0 2px rgba(124,58,237,0.25)",
     },
