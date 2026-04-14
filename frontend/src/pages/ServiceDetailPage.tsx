@@ -104,7 +104,6 @@ const heroBgMap: Record<string, string> = {
   "womens-nutrition": wcWomenNutrition,
   
   // Fertility Care
-  "ivf-in-vitro-fertilisation": motherChildrenImg,
   "iui-intrauterine-insemination": motherChildrenImg,
   "icsi-intracytoplasmic-sperm-injection": motherChildrenImg,
   "egg-freezing": motherChildrenImg,
@@ -169,7 +168,6 @@ const sectionImageMap: Record<string, string> = {
   "womens-nutrition": wcWomenNutrition,
   
   // Fertility Care
-  "ivf-in-vitro-fertilisation": motherChildrenImg,
   "iui-intrauterine-insemination": motherChildrenImg,
   "icsi-intracytoplasmic-sperm-injection": motherChildrenImg,
   "egg-freezing": motherChildrenImg,
@@ -239,7 +237,7 @@ function ServiceHero({ bgImage, label, tagline }: { bgImage: string; label: stri
         </div>
 
         {/* Title */}
-        <h1 className="text-white font-extrabold leading-tight drop-shadow-[0_2px_8px_rgba(0,0,0,0.6)] text-2xl sm:text-3xl md:text-4xl lg:text-5xl max-w-[92vw] sm:max-w-2xl md:max-w-3xl lg:max-w-5xl">
+        <h1 className="text-white font-bold leading-tight drop-shadow-[0_2px_8px_rgba(0,0,0,0.6)] text-2xl sm:text-3xl md:text-4xl lg:text-5xl max-w-[92vw] sm:max-w-2xl md:max-w-3xl lg:max-w-5xl">
           {label}
         </h1>
 
@@ -337,7 +335,7 @@ function AboutSection({ label, sectionImage, overview, symptoms, causes, treatme
           {/* <p className="text-[#E91E8C] font-semibold text-sm sm:text-base uppercase tracking-widest mb-2">
             Disease Information
           </p> */}
-          <h2 className="text-2xl sm:text-3xl lg:text-4xl font-extrabold text-gray-900 leading-tight">
+          <h2 className="text-2xl sm:text-3xl lg:text-4xl font-bold text-gray-900 leading-tight">
             About <span className="text-[#6B2D8B]">{label}</span>
           </h2>
           <div className="flex items-center justify-center gap-3 mt-3">
@@ -430,7 +428,7 @@ function StatsBar() {
       <div className="w-[90%] md:w-[80%] lg:w-[70%] mx-auto grid grid-cols-2 sm:grid-cols-4 gap-4 sm:gap-6">
         {stats.map(({ value, label }) => (
           <div key={label} className="flex flex-col items-center text-center gap-0.5">
-            <span className="text-white font-extrabold text-2xl sm:text-3xl">{value}</span>
+            <span className="text-white font-bold text-2xl sm:text-3xl">{value}</span>
             <span className="text-white/75 text-xs sm:text-sm leading-tight">{label}</span>
           </div>
         ))}

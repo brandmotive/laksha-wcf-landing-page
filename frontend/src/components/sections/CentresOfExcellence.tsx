@@ -35,7 +35,7 @@ const centres: Centre[] = [
     label: "Fertility Care",
     image: fertilityCareImg,
     description:
-      "Parenthood is one of life's most profound journeys, and our Fertility Care team is here to support you every step of the way. With state-of-the-art assisted reproductive technologies including IVF, IUI, ICSI, and fertility preservation, our specialists combine cutting-edge science with heartfelt compassion to make your dream of a family a reality.",
+      "Parenthood is one of life's most profound journeys, and our Fertility Care team is here to support you every step of the way. With state-of-the-art assisted reproductive technologies including IUI, ICSI, and fertility preservation, our specialists combine cutting-edge science with heartfelt compassion to make your dream of a family a reality.",
   },
 ];
 
@@ -63,7 +63,7 @@ export default function CentresOfExcellence() {
 
         {/* ── Heading ── */}
         <div className="text-center flex flex-col gap-3 max-w-2xl">
-          <h2 className="text-2xl sm:text-3xl md:text-4xl font-extrabold text-gray-900 leading-tight">
+          <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold text-gray-900 leading-tight">
             Our Centres of Excellence
           </h2>
           <p className="text-[13px] sm:text-sm md:text-[15px] text-[#6B2D8B] leading-relaxed">
@@ -132,7 +132,7 @@ export default function CentresOfExcellence() {
 
             {/* LEFT — Description */}
             <div className="w-full md:w-[42%] flex flex-col gap-4">
-              <h3 className="text-xl sm:text-2xl font-extrabold text-gray-900">
+              <h3 className="text-xl sm:text-2xl font-bold text-gray-900">
                 {activeCentre.label}
               </h3>
               <p className="text-gray-600 text-[13px] sm:text-sm md:text-[14px] leading-relaxed text-justify">

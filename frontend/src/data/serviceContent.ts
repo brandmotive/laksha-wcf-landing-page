@@ -366,6 +366,33 @@ export const serviceContentMap: ServiceContentMap = {
     ],
   },
 
+  // ── Fertility Care ────────────────────────────────────────────────────────
+  "iui-intrauterine-insemination": {
+    overview:
+      "Intrauterine Insemination (IUI) is a gentle fertility treatment that involves placing specially prepared sperm directly into the uterus at the time of ovulation. This procedure increases the number of sperm that reach the fallopian tubes, significantly enhancing the chances of natural conception.",
+    symptoms: [
+      "Unexplained infertility",
+      "Minor male factor infertility (low sperm count or motility)",
+      "Cervical factor infertility (mucus issues)",
+      "Ovulatory disorders needing timed insemination",
+      "Endometriosis-related fertility challenges",
+    ],
+    causes: [
+      "Structural cervical abnormalities",
+      "Sperm's inability to penetrate cervical mucus",
+      "Irregular ovulation cycles",
+      "Slightly reduced sperm parameters",
+      "Incompatibility between sperm and vaginal environment",
+    ],
+    treatment: [
+      "Ovulation induction using fertility medications",
+      "Follicular monitoring via ultrasound",
+      "Sperm washing and preparation for concentration",
+      "Guided intrauterine insemination procedure",
+      "Luteal phase support after the procedure",
+    ],
+  },
+
   // ── Our Hospitals ─────────────────────────────────────────────────────────
   "anna-nagar-chennai": {
     overview:
@@ -403,7 +430,7 @@ export const serviceContentMap: ServiceContentMap = {
     treatment: [
       "Fetal medicine and prenatal diagnosis centre",
       "Paediatric cardiac surgery and ICU",
-      "Fertility and IVF programme",
+      "Fertility and IUI programme",
       "Robotic-assisted laparoscopic surgery",
       "Round-the-clock paediatric emergency services",
     ],

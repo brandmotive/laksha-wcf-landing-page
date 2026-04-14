@@ -67,7 +67,7 @@ export const navMenu: NavItem[] = [
   {
     label: "Fertility Care",
     children: [
-      { label: "IVF (In Vitro Fertilisation)", slug: "ivf-in-vitro-fertilisation", heroTagline: "Advanced IVF treatment to help you achieve the gift of parenthood." },
+      { label: "IUI (Intrauterine Insemination)", slug: "iui-intrauterine-insemination", heroTagline: "Gentle and effective IUI procedure to support your fertility journey." },
       // { label: "IUI (Intrauterine Insemination)", slug: "iui-intrauterine-insemination", heroTagline: "Gentle and effective IUI procedure to support your fertility journey." },
       // { label: "ICSI (Intracytoplasmic Sperm Injection)", slug: "icsi-intracytoplasmic-sperm-injection", heroTagline: "Precision fertility care with advanced ICSI procedures." },
       // { label: "Egg Freezing", slug: "egg-freezing", heroTagline: "Preserve your future with safe and reliable egg freezing services." },
@@ -84,8 +84,8 @@ export const navMenu: NavItem[] = [
   {
     label: "Our Hospitals",
     children: [
-      { label: "Wcf Villivakkam", slug: "wcf-villivakkam", heroTagline: "World-class care at the Chennai hospital." },
-      { label: "Wcf Kolathur", slug: "wcf-kolathur", heroTagline: "Excellence in healthcare." },
+      { label: "WCF Villivakkam", slug: "wcf-villivakkam", heroTagline: "World-class care at the Chennai hospital." },
+      { label: "WCF Kolathur", slug: "wcf-kolathur", heroTagline: "Excellence in healthcare." },
       { label: "Laksha WCF Royapettah", slug: "laksha-wcf-royapettah", heroTagline: "Trusted care hospital." },
     ],
   },
