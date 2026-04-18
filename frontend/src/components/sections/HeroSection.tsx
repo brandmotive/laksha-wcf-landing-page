@@ -6,6 +6,7 @@ import heroTwo from "../../assets/images/heroSection/heroTwo.jpg.jpeg";
 import heroThree from "../../assets/images/heroSection/heroThree.jpg.jpeg";
 import heroFour from "../../assets/images/heroSection/heroFour.jpg.jpeg";
 import heroFive from "../../assets/images/heroSection/heroFive.jpg.jpeg";
+import hero from "../../assets/images/logos/Hero_Section_Logo.png"
 
 const heroImages = [heroOne, heroTwo, heroThree, heroFour, heroFive];
 
@@ -115,19 +116,25 @@ export default function HeroSection() {
       />
 
       {/* ── Content ── */}
-      <div className="relative z-10 flex flex-col items-center justify-start gap-4 md:gap-8 text-center px-4 pt-18 pb-10 min-h-screen md:pt-36 md:pb-16 min-h-[calc(100vh-72px)] md:min-h-screen">
+      <div className="relative z-10 flex flex-col items-center justify-start gap-4 md:gap-2 text-center px-4 pt-18 pb-10 min-h-screen md:pt-36 md:pb-16 min-h-[calc(100vh-72px)] md:min-h-screen">
+
+        <div className="mt-2">
+          <img className="h-80" src={hero} alt="" />
+        </div>
+
+
         <div className="flex flex-col gap-2 md:gap-3 mt-0 md:mt-0">
           {/* Main Heading Text */}
           <div className="rounded-xl  md:mx-auto max-w-[90vw] md:max-w-3xl lg:max-w-4xl drop-shadow-md">
-            <h1 className="text-black text-xl sm:text-4xl md:text-[40px] font-bold font-sans leading-tight tracking-wide drop-shadow-sm">
+            {/*<h1 className="text-black text-xl sm:text-4xl md:text-[40px] font-bold font-sans leading-tight tracking-wide drop-shadow-sm">
               Best Maternity Normal Delivery Hospital in Chennai
             </h1>
-            <p className="text-black text-[18px] sm:text-xl md:text-[22px] font-semibold md:mt-4 leading-snug drop-shadow-sm">
+             <p className="text-black text-[18px] sm:text-xl md:text-[22px] font-semibold md:mt-4 leading-snug drop-shadow-sm">
               26 Years of Excellence
             </p>
             <p className="text-black text-[12px] sm:text-lg md:text-xl font-medium mt-1 leading-snug drop-shadow-sm opacity-95">
               90% of Natural Birth, Delivered more than 25,000+ Babies
-            </p>
+            </p> */}
           </div>
         </div>
 
